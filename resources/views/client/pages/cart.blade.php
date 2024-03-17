@@ -71,7 +71,7 @@
                     <input type="hidden" name="total" id="ipTotal">
                 </div>
                 <span id="totalPrice" class="block py-2 px-4 text-[18px]">Tổng: 0₫</span>
-                <button class="px-4 py-1 bg-[#009b49] text-white" id="btnBuyNow">Mua Ngay</button>
+                <button class="px-4 py-1 bg-primary-color text-white" id="btnBuyNow">Mua Ngay</button>
             </form>
             
         </div>

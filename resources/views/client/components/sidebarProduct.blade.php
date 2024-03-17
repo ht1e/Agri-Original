@@ -1,10 +1,10 @@
-<div class="w-full mb-10 border">
+<div class="w-full mb-10 border-b border-primary-color">
     <ul class="flex">
         @foreach($categories as $key => $category) 
             <li class="px-4 py-2 mr-5 text-center">
                 <a href="{{route('getCategory', ['id' => $category->DM_Ma])}}" class="group">
                     <img class="h-[50px] w-[50px] rounded-full" src="https://www.hoptri.com/media/k2/items/cache/63955aa9869cf7707ada1662dbfb31e2_XL.jpg" alt="">
-                    <span class="py-2 block group-hover:text-[#009b49] text-xs w-[60px]">{{$category->DM_Ten}}</span>
+                    <span class="py-2 block group-hover:text-primary-color text-xs w-[60px]">{{$category->DM_Ten}}</span>
                 </a>
             </li>
         @endforeach
@@ -13,11 +13,11 @@
         <form action="{{route('search')}}" class="w-[300px] relative leading-10 " method="post">
             @csrf
             @if(!empty($keysearch))
-                <input class="w-full border focus:outline-none focus:border-[#009b49] px-4 rounded-lg" type="text" name="textSearch" id="" value="{{$keysearch}}">
+                <input class="w-full border focus:outline-none focus:border-primary-color px-4 rounded-lg" type="text" name="textSearch" id="" value="{{$keysearch}}">
             @else
-                <input class="w-full border focus:outline-none focus:border-[#009b49] px-4 rounded-lg" type="text" name="textSearch" id="">
+                <input class="w-full border focus:outline-none focus:border-primary-color px-4 rounded-lg" type="text" name="textSearch" id="">
             @endif
-            <button id="btnSearch" class="absolute top-0 -right-0 border-[#009b49] hover:scale-90 rounded-lg">
+            <button id="btnSearch" class="absolute top-0 -right-0 border-primary-color hover:scale-90 rounded-lg">
                 <i class="fa-solid fa-magnifying-glass px-4 py-1"></i>
             </button>
             

@@ -2,14 +2,14 @@
 
 
 @section('alertDialog')
-    <div class="absolute w-[450px] bg-slate-100 drop-shadow-2xl top-[200px] left-1/2 -translate-x-1/2 text-center px-5 py-5 border border-[#009b49] hidden" id="alertOrderSuccess">
+    <div class="absolute w-[450px] bg-slate-100 drop-shadow-2xl top-[200px] left-1/2 -translate-x-1/2 text-center px-5 py-5 border border-primary-color hidden" id="alertOrderSuccess">
         <div class="">
             <p class="text-xl px-2">Đơn hàng đã được đặt thành công.</p>
-            <i class="fa-regular fa-circle-check text-xl text-[#009b49]"></i>
+            <i class="fa-regular fa-circle-check text-xl text-primary-color"></i>
         </div>
         <div class=" flex justify-between mt-5">
-            <a href="" class="px-4 py-2 bg-[#009b49] text-white rounded-md group"> <span>Xem đơn hàng</span><i class="fa-solid fa-receipt group-hover:rotate-12 ml-2"></i></a>
-            <a href="{{route('getCart')}}" class="px-4 py-2 bg-[#009b49] text-white rounded-md group"> <span>Trở về giỏ hàng</span><i class="fa-solid fa-cart-shopping group-hover:rotate-12 ml-2"></i></a>
+            <a href="" class="px-4 py-2 bg-primary-color text-white rounded-md group"> <span>Xem đơn hàng</span><i class="fa-solid fa-receipt group-hover:rotate-12 ml-2"></i></a>
+            <a href="{{route('getCart')}}" class="px-4 py-2 bg-primary-color text-white rounded-md group"> <span>Trở về giỏ hàng</span><i class="fa-solid fa-cart-shopping group-hover:rotate-12 ml-2"></i></a>
         </div>
     </div>
 
@@ -17,23 +17,23 @@
 
 @section('content')
     <div class="py-5" id="checkoutContainer">
-        <div class="title flex justify-between"><h1 class="px-2 py-4 text-xl font-bold">Thanh Toán</h1><a class="px-2 py-4 text-xl font-bold" href="{{route('getCart')}}">Giỏ Hàng<i class="fa-solid fa-arrow-right ml-1"></i></a></div>
+        <div class="title flex justify-between text-primary-color"><h1 class="px-2 py-4 text-xl font-bold ">Thanh Toán</h1><a class="px-2 py-4 text-xl font-bold" href="{{route('getCart')}}">Giỏ Hàng<i class="fa-solid fa-arrow-right ml-1"></i></a></div>
         <div class="infor border-b py-2">
             <h2 class="px-1 py-2 text-[18px] font-semibold">Thông tin người nhận</h2>
             <div class="flex justify-between px-5">
                 <label for="">Địa chỉ: 
-                    <input class="px-2 py-1 focus:outline-none border border-[#009b49] rounded-md" type="text" name="address" id="address">
+                    <input class="px-2 py-1 focus:outline-none border border-primary-color rounded-md" type="text" name="address" id="address">
                 </label>
                 <label for="">Họ và tên:
-                    <input class="px-2 py-1 focus:outline-none border border-[#009b49] rounded-md" type="text" name="name" id="name">
+                    <input class="px-2 py-1 focus:outline-none border border-primary-color rounded-md" type="text" name="name" id="name">
                 </label>
                 <label for="">Số điện thoại:
-                    <input class="px-2 py-1 focus:outline-none border border-[#009b49] rounded-md" type="text" name="phone" id="phone">
+                    <input class="px-2 py-1 focus:outline-none border border-primary-color rounded-md" type="text" name="phone" id="phone">
                 </label>
             </div>
             <div class="px-5 mt-5">
                 <label for="">Ghi chú:
-                    <textarea class="px-2 py-1 focus:outline-none border border-[#009b49] rounded-md" type="text" name="description" id="description" cols="40" rows="5"></textarea>
+                    <textarea class="px-2 py-1 focus:outline-none border border-primary-color rounded-md" type="text" name="description" id="description" cols="40" rows="5"></textarea>
                 </label>
             </div>
         </div>
@@ -74,12 +74,12 @@
         <div class="payment">
             <div class=""><h2 class="px-1 py-2 text-[18px] font-semibold">Phương thức thanh toán</h2></div>
             <div class="option">
-                <div class=""><span class="px-2 py-1 border border-[#009b49]">Thanh toán khi nhận hàng</span></div>
+                <div class=""><span class="px-2 py-1 border border-primary-color">Thanh toán khi nhận hàng</span></div>
             </div>
         </div>
        
         <div class="flex justify-end">
-            <button class="px-2 py-1 border border-[#009b49] hover:bg-[#009b49] hover:text-white" id="btnCheckout">Đặt hàng</button>
+            <button class="px-2 py-1 border border-primary-color hover:bg-primary-color hover:text-white" id="btnCheckout">Đặt hàng</button>
         </div>
     </div>
 

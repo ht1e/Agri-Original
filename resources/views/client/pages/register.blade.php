@@ -12,8 +12,8 @@
     <header class="w-full h-auto">
         <div class="w-[70%] mx-auto grid grid-cols-5 gap-3">
             <div class="logo col-span-1">
-                <a href="" class="w-full ">
-                    <img class="w-[60%] h-[90%]" src="https://static.vecteezy.com/system/resources/previews/000/623/682/original/agriculture-business-logo-template-unique-green-vector-image.jpg" alt="">
+                <a href="{{route('home')}}" class="w-full ">
+                    <img class="w-[60%] h-[90%]" src="https://newtechvietnam.com/wp-content/uploads/2024/01/LOGO-1.png" alt="">
                 </a>
             </div>
             <div class="container col-span-4 grid grid-rows-2 py-5">
@@ -55,14 +55,14 @@
                     @csrf
                     <label for="" class="py-4 my-2 inline-block relative w-[40%]"> 
                         <span class="absolute top-0 left-0 text-xs">Họ:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full" type="text" name="firstName">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="firstName">
                         @error('firstName')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="ml-4 py-4 my-2 inline-block relative w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Tên:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full" type="text" name="lastName">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="lastName">
                         @error('lastName')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
@@ -70,28 +70,28 @@
                     
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Ngày sinh:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full"  type="date" name="birthday">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full"  type="date" name="birthday">
                         @error('birthday')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                        <span class="absolute top-0 left-0 text-xs">Email:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full" type="text" name="email">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="email">
                         @error('email')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Số điện thoại:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full" type="text" name="phone">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="phone">
                         @error('phone')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                        <span class="absolute top-0 left-0 text-xs">Mật khẩu:</span>
-                        <input type="password" class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full" type="text" name="password" id="password">
+                        <input type="password" class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="password" id="password">
                         
                         @error('password')
                             <span class="text-xs text-red-500">{{$message}}</span>
@@ -99,7 +99,7 @@
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Nhập lại mật khẩu:</span>
-                        <input type="password" class="px-4 py-1 rounded-md outline-none  border focus:border-[#009b49] w-full" type="text" name="passwordCorrect" id="passwordCorrect">
+                        <input type="password" class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="passwordCorrect" id="passwordCorrect">
                         <span id="correct" class=" hidden text-xs text-green-400"><i class="fa-solid fa-circle-check"></i></span>
                         <span id="incorrect" class=" hidden text-xs text-red-400"><i class="fa-solid fa-circle-xmark"></i></span>
                         @error('passwordCorrect')
@@ -107,8 +107,8 @@
                         @enderror
                     </label>
                     <div class=" flex justify-between items-center">
-                        <button type="submit" class="px-4 py-2 rounded-md bg-[#009b49] text-white">Đăng ký ngay</button>
-                        <p class="text-xs">Bạn đã có tài khoản?<a class="text-[#009b49]" href="{{route('login')}}">Đăng nhập ngay.</a></p>
+                        <button type="submit" class="px-4 py-2 rounded-md bg-primary-color text-white">Đăng ký ngay</button>
+                        <p class="text-xs">Bạn đã có tài khoản?<a class="text-primary-color" href="{{route('login')}}">Đăng nhập ngay.</a></p>
                     </div>
                     
                 </form>

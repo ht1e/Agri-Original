@@ -21,7 +21,15 @@ class ProductController extends Controller
 
     public function getProductDetails($id) {
 
-        return view('client.pages.productDetails');
+        $categories = DanhMuc::all();
+
+        $data = SanPham::where('sp_ma', $id)
+        ->join('danhmuc', 'sanpham.sp_madm', '=', 'danhmuc.dm_ma')
+        ->first();
+
+        // dd($data);
+
+        return view('client.pages.productDetails', compact('categories', 'data'));
     }
 
     public function getCategory($id) {

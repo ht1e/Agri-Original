@@ -60,19 +60,54 @@ class CheckoutController extends Controller
     }
 
     public function getCheckout(Request $request) {
-        $items = json_decode($request->input('items'));
-        $total = $request->input('total');
 
         $idUser = Auth::user()->id;
         $idCart = GioHang::where('gh_mand', $idUser)->get('gh_ma')[0]->gh_ma;
+        $total = $request->input('total');
 
-        $data = ChiTietGioHang::where('ctgh_magh', $idCart)
-        ->whereIn('ctgh_maSP', $items)
-        ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
-        ->get();
+        if($request->has('idProduct') && $request->has('quantity')) {
+            $idProduct = $request->input('idProduct');
+            $quantity = $request->input('quantity');
+
+            //dd($idProduct, $quantity, $total);
+
+            $alreadyProduct = ChiTietGioHang::where('ctgh_magh', $idCart)
+            ->where('ctgh_masp', $idProduct)
+            ->get('ctgh_soluong');
+
+            if(sizeof($alreadyProduct) > 0) {
+                DB::table('chitietgiohang')
+                ->where('ctgh_magh', $idCart)
+                ->where('ctgh_masp', $idProduct)
+                ->update(['ctgh_soluong' => $quantity]);
+            }
+            else {
+                DB::table('chitietgiohang')
+                ->insert([
+                'ctgh_magh' => $idCart,
+                'ctgh_masp' => $idProduct,
+                'ctgh_soluong' => $quantity
+                ]);
+            }
+
+            $data = ChiTietGioHang::where('ctgh_magh', $idCart)
+            ->where('ctgh_maSP', $idProduct)
+            ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
+            ->get();
+
+        } 
+        else {
+            $items = json_decode($request->input('items'));
+            
+            $data = ChiTietGioHang::where('ctgh_magh', $idCart)
+            ->whereIn('ctgh_maSP', $items)
+            ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
+            ->get();
+
+        }
+
         
-
-        //dd($items, $total, $idCart, $data[0]->SP_Ten);
+        //dd($data, $total);
 
 
         return view('client.pages.checkout', compact('data', 'total')); 

@@ -11,8 +11,8 @@
     <header class="w-full h-auto">
         <div class="w-[70%] mx-auto grid grid-cols-5 gap-3">
             <div class="logo col-span-1">
-                <a href="" class="w-full ">
-                    <img class="w-[60%] h-[90%]" src="https://static.vecteezy.com/system/resources/previews/000/623/682/original/agriculture-business-logo-template-unique-green-vector-image.jpg" alt="">
+                <a href="{{route('home')}}" class="w-full ">
+                    <img class="w-[60%] h-[90%]" src="https://newtechvietnam.com/wp-content/uploads/2024/01/LOGO-1.png" alt="">
                 </a>
             </div>
             <div class="container col-span-4 grid grid-rows-2 py-5">
@@ -32,7 +32,7 @@
                 </div> --}}
                 <div class="nav row-span-1">
                     <ul class="float-left w-full">
-                        <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Trang Chủ</a></li>
+                        <li class="inline mx-8"><a href="{{route('home')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Trang Chủ</a></li>
                         <li class="inline mx-8"><a href="{{route('mainProduct')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Sản Phẩm</a></li>
                         <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Giới Thiệu</a></li>
                         <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Liên Hệ</a></li>
@@ -54,19 +54,19 @@
                     @csrf
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                        <span class="absolute top-0 left-0 text-xs">Email:</span>
-                        <input class="px-4 py-1 rounded-md outline-none border focus:border-[#009b49] w-full" type="text" name="email">
+                        <input class="px-4 py-1 rounded-md outline-none border focus:border-primary-color w-full" type="text" name="email">
                         @if(session()->has('invalid-email'))<span class="text-xs text-red-500">{{session()->get('invalid-email')}}</span> @endif
                         @error('email')<span class="text-xs text-red-500">{{$message}}</span> @enderror
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                        <span class="absolute top-0 left-0 text-xs">Mật khẩu:</span>
-                        <input class="px-4 py-1 rounded-md outline-none border focus:border-[#009b49] w-full" type="password" name="password">
+                        <input class="px-4 py-1 rounded-md outline-none border focus:border-primary-color w-full" type="password" name="password">
                         @if(session()->has('incorrect-password'))<span class="text-xs text-red-500">{{session()->get('incorrect-password')}}</span> @endif
                         @error('password')<span class="text-xs text-red-500">{{$message}}</span> @enderror
                     </label>
                     <div class=" flex justify-between items-center">
-                        <button type="submit" class="px-4 py-2 rounded-md bg-[#009b49] text-white">Đăng Nhập</button>
-                        <p class="text-xs">Bạn chưa có tài khoản?<a class="text-[#009b49]" href="{{route('register')}}">Đăng ký ngay.</a></p>
+                        <button type="submit" class="px-4 py-2 rounded-md bg-primary-color text-white">Đăng Nhập</button>
+                        <p class="text-xs">Bạn chưa có tài khoản?<a class="text-primary-color" href="{{route('register')}}">Đăng ký ngay.</a></p>
                     </div>
                     
                 </form>

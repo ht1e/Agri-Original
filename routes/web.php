@@ -8,7 +8,12 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Auth\AuthController;
+///Admin Controller
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\ProductsController;
+use App\Http\Controllers\Admin\OrderController;
+use App\Http\Controllers\Admin\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -62,8 +67,29 @@ Route::get('/profile', [ClientController::class, 'getProfile'])->name('getProfil
 Route::get('/403', [AuthController::class, 'get403'])->name('403');
 
 
-Route::prefix('admin')->middleware('authmiddleware')->group(function() {
+Route::prefix('/admin')->middleware('authmiddleware')->group(function() {
     Route::get('/', [AdminController::class, 'index'])->name('admin');
+
+    
+//Admin
+    Route::get('/category/add', [CategoryController::class, 'index'])->name('category');
+    Route::post('/category/add', [CategoryController::class, 'addCategory'])->name('addCategory');
+
+    Route::get('/product', [ProductsController::class, 'index'])->name('adminMainProduct');
+    Route::get('/product/add', [ProductsController::class, 'addProduct'])->name('addProduct');
+    Route::post('/product/add', [ProductsController::class, 'handleAddProduct'])->name('handleAddProduct');
+    Route::get('/product/update/{id}', [ProductsController::class, 'getUpdateProduct'])->name('getUpdateProduct');
+    Route::post('/product/update/{id}', [ProductsController::class, 'handleUpdateProduct'])->name('handleUpdateProduct');
+    Route::post('/product/delete/{id}', [ProductsController::class, 'handleDeleteProduct'])->name('handleDeleteProduct');
+
+    Route::get('/order', [OrderController::class, 'index'])->name('mainOrder');
+    Route::get('/order/ordered', [OrderController::class, 'ordered'])->name('ordered');
+    Route::get('/order/acceptOrder', [OrderController::class, 'acceptOrder'])->name('acceptOrder');
+    Route::get('/order/rejectOrder', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
+    Route::get('/order/successOrder', [OrderController::class, 'successOrder'])->name('successOrder');
+    Route::get('/order/orderDetails/{id}', [OrderController::class, 'orderDetails'])->name('orderDetails');
+
+    Route::get('/users', [UserController::class, 'index'])->name('mainUsers');
 });
 
 

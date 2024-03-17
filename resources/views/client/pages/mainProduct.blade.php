@@ -6,10 +6,10 @@
             @if(!empty($keysearch))
                 @include('client.components.sidebar', ['categories' => $categories, 'keysearch' => $keysearch])
             @else
-                @include('client.components.sidebar', ['categories' => $categories])
+                @include('client.components.sidebarProduct', ['categories' => $categories])
             @endif
         </div>
-        <div class="p-2 filterContainer h-auto border">
+        <div class="p-2 filterContainer h-auto">
             <form action="{{route('filterProduct')}}" method="post">
                 @csrf
                 <ul>
