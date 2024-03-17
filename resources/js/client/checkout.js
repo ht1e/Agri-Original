@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2'
 const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
@@ -34,14 +35,14 @@ function getListItem() {
 // console.log(listItemRow, getListItem())
 
 const handleSubmitCheckout = () => {
-    console.log(checkoutContainer, alertOrderSuccess, btnCheckout)
+    //console.log(checkoutContainer, alertOrderSuccess, btnCheckout)
 
-    btnCheckout.disabled = true
-    ipAddress.disabled = true
-    ipName.disabled = true
-    ipPhone.disabled = true
+    // btnCheckout.disabled = true
+    // ipAddress.disabled = true
+    // ipName.disabled = true
+    // ipPhone.disabled = true
 
-    alertOrderSuccess.classList.remove('hidden')
+    //alertOrderSuccess.classList.remove('hidden')
 
     //call api
     const address = ipAddress.value
@@ -60,8 +61,24 @@ const handleSubmitCheckout = () => {
         listItem,
         listQuantity
     })
-    .then(response => console.log(response))
+    .then(response => {
+        console.log(response)
+        Swal.fire({
+            icon: "success",
+            title: response.data.message,
+            text: "Bạn sẽ được chuyển về trang chủ",
+            footer: `<a href="http://127.0.0.1:8000/profile/ordered/${response.data.idOrder}">Bạn có muốn xem đơn hàng?</a>`
+          }).then((result) => {
+            if(result.isConfirmed) {
+                window.location = "/"
+            }
+          });
+
+    })
     .catch(err => console.log(err))
+
+
+    
 
 
 }

@@ -62,6 +62,7 @@ Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('getCh
 
 //profile
 Route::get('/profile', [ClientController::class, 'getProfile'])->name('getProfile');
+Route::get('profile/ordered/{id}', [ClientController::class, 'getOrder'])->name('getOrder');
 
 //403
 Route::get('/403', [AuthController::class, 'get403'])->name('403');

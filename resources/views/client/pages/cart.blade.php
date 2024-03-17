@@ -30,42 +30,8 @@
                 @endforeach
             </div>
         </div>
-        {{-- <table class="w-full mt-5">
-            <thead>
-                <th><span class="text-xs px-2">Chọn tất cả</span><input type="checkbox" name="" id="checkAll"></th>
-                <th>Sản phẩm</th>
-                <th>Số lượng</th>
-                <th>Đơn giá</th>
-                <th>Tổng</th>
-            </thead>
-            <tbody>
-                
-
-                @php
-                    $data = [1,2,3,4,5,6];
-                @endphp
-                @foreach($data as $key => $item)
-                <tr class="text-center leading-[50px]" >
-                    <td><input type="checkbox" class="checkCart" data-key="{{$item}}"></td>
-                    <td>Sản phẩm {{$item}}</td>
-                    <td class="">
-                        <div class="leading-[30px] flex justify-center items-center">
-                            <input type="number" class=" h-full text-center w-[40px] py-1" value="1" >
-                            <div class="flex">
-                                <button class="block h-[30px] px-2 py-1 bg-red-300"><i class="fa-solid fa-plus text-xs"></i></button>
-                                <button class="block h-[30px] px-2 py-1 bg-white"><i class="fa-solid fa-minus text-xs"></i></button>
-                            </div> 
-
-                    </td>
-                    <td>{{number_format($item*10000, 0, '', '.')}}đ</td>
-                    <td>{{number_format($item*10000, 0, '', '.')}}đ</td>
-                    <td><button class="btnTrash" data-key="{{$item}}"><i class="fa-solid fa-trash-can "></i></button></td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table> --}}
         <div class="flex justify-end mt-5">
-            <form action="{{route('getCheckout')}}" id="formPostCheck" method="get">
+            <form action="{{route('getCheckout')}}" id="formPostCheck" method="get" >
                 <div class="containerCheck">
                     <input type="hidden" name="items" id="ipItems">
                     <input type="hidden" name="total" id="ipTotal">

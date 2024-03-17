@@ -33,29 +33,29 @@ class CheckoutController extends Controller
         $userId = Auth::user()->id;
         
 
-        // $idOrder = DB::table('donhang')->insertGetId([
-        //     'dh_thoigian' => date('d-m-Y'),
-        //     'dh_ghichu' => $description,
-        //     'dh_mattdh' => 1,
-        //     'dh_mand' => $userId,
-        //     'dh_tennguoinhan' => $name,
-        //     'dh_diachi' => $address,
-        //     'dh_sdt' => $phone
-        // ]);
+        $idOrder = DB::table('donhang')->insertGetId([
+            'dh_thoigian' => date('d-m-Y'),
+            'dh_ghichu' => $description,
+            'dh_mattdh' => 1,
+            'dh_mand' => $userId,
+            'dh_tennguoinhan' => $name,
+            'dh_diachi' => $address,
+            'dh_sdt' => $phone
+        ]);
 
 
-        // foreach($listItem as $key => $item) { 
-        //     DB::table('chitietdonhang')->insert([
-        //         'ctdh_madh' => $idOrder,
-        //         'ctdh_masp' => $item,
-        //         'ctdh_soluong' => $listQuantity[$key],
-        //     ]);
-        // }
+        foreach($listItem as $key => $item) { 
+            DB::table('chitietdonhang')->insert([
+                'ctdh_madh' => $idOrder,
+                'ctdh_masp' => $item,
+                'ctdh_soluong' => $listQuantity[$key],
+            ]);
+        }
 
         
 
 
-        return response()->json(['description' => $description, 'address' => $address, 'name' => $name, 'phone' => $phone, 'listItem' => $listItem,'listQuantity' => $listQuantity, 'userId' => $userId, 'date' => date('d-m-Y')]);
+        return response()->json(['idOrder' => $idOrder, 'message' => 'Đặt hàng thành công']);
         // return redirect()->route('checkout', ['items' => $items]);
     }
 

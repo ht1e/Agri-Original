@@ -1,4 +1,5 @@
 import axios from 'axios';
+import Swal from 'sweetalert2'
 const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
@@ -79,11 +80,31 @@ checkAll.addEventListener('change', CheckAll);
 
 //handle click TrashCan
 function handleDelete(e) {
-    e.target.parentNode.parentNode.parentNode.remove()
-    //Call API
-    const idProduct = e.target.getAttribute('data-key')
-    const quantity = 0
-    updateCart(idProduct, quantity)
+
+    Swal.fire({
+        title: "Bạn có chắc muốn xóa?",
+        text: "Sản phẩm có thể giúp ích cho bạn!",
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Xóa ngay"
+      }).then((result) => {
+        if (result.isConfirmed) {  
+            Swal.fire({
+            title: "Đã xóa!",
+            text: "Sản phẩm đã được xóa khỏi giỏ hàng của bạn",
+            icon: "success"
+            });
+            e.target.parentNode.parentNode.parentNode.remove()
+            //Call API
+            const idProduct = e.target.getAttribute('data-key')
+            const quantity = 0
+            updateCart(idProduct, quantity)
+        }
+      });
+
+    
 }
 
 listTrashCan.forEach(item => {
@@ -117,8 +138,6 @@ listIPQuantity.forEach(item => {
 })
 
 
-
-
 //get list checked
 const getListChecked = () => {
     const items = []
@@ -130,26 +149,51 @@ const getListChecked = () => {
     return items
 }
 
-const handleCheckout = () => {
+const handleCheckout = (e) => {
+    
+
     const items = getListChecked()
     if(items.length > 0) { 
         const ipItems = $('#ipItems')
         ipItems.value = JSON.stringify(items)
+
+        return true
         // console.log(ipItems, JSON.stringify(items))
     } 
     else {
-        alert('Bạn chưa chọn sản phẩm nào')
+        let timerInterval;
+        Swal.fire({
+            icon: 'warning',
+            title: "Bạn chưa chọn sản phẩm nào!",
+            html: "Vui lòng chọn sản phẩm bạn muốn mua",
+            timer: 2000,
+            timerProgressBar: true,
+            didOpen: () => {
+                Swal.showLoading();
+                const timer = Swal.getPopup().querySelector("b");
+                timerInterval = setInterval(() => {
+                timer.textContent = `${Swal.getTimerLeft()}`;
+                }, 100);
+            },
+            willClose: () => {
+                clearInterval(timerInterval);
+            }
+            }).then((result) => {
+            /* Read more about handling dismissals below */
+            if (result.dismiss === Swal.DismissReason.timer) {
+                console.log("I was closed by the timer");
+            }
+        });
+        e.preventDefault()
     }
 
 }
 
-btnBuyNow.addEventListener('click', handleCheckout)
+formCheck.addEventListener('submit',  handleCheckout)
 
+//btnBuyNow.addEventListener('click', handleCheckout)
 
-
-
-
-
+//format total
 canculatorTotal()
 
 

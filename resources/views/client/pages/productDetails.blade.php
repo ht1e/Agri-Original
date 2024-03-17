@@ -22,8 +22,8 @@
             <input type="hidden" name="idProduct" value="{{$data->SP_Ma}}">
     
             <button class="leading-[60px] block border px-3 mt-5 w-full text-white bg-primary-color text-[18px] " id="btnBuyNow">Mua Ngay</button>
-            <button class="leading-[60px] blockborder px-3 mt-5 w-full bg-white text-primary-color text-[18px] border border-primary-color hover:text-white hover:bg-primary-color" id="btnAddToCart" data-key="1">Thêm vào giỏ hàng</button>
         </form>
+        <button class="leading-[60px] blockborder px-3 mt-5 w-full bg-white text-primary-color text-[18px] border border-primary-color hover:text-white hover:bg-primary-color" id="btnAddToCart" data-key="{{$data->SP_Ma}}">Thêm vào giỏ hàng</button>
     </div>
 
 </div>

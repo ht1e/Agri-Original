@@ -1,7 +1,7 @@
 @extends('client.layout.main')
 
 
-@section('alertDialog')
+{{-- @section('alertDialog')
     <div class="absolute w-[450px] bg-slate-100 drop-shadow-2xl top-[200px] left-1/2 -translate-x-1/2 text-center px-5 py-5 border border-primary-color hidden" id="alertOrderSuccess">
         <div class="">
             <p class="text-xl px-2">Đơn hàng đã được đặt thành công.</p>
@@ -13,7 +13,7 @@
         </div>
     </div>
 
-@endsection
+@endsection --}}
 
 @section('content')
     <div class="py-5" id="checkoutContainer">

@@ -11,4 +11,8 @@ class ClientController extends Controller
         return view('client.pages.profile');
     }
 
+    public function getOrder($id) {
+        dd($id);
+    }
+
 }

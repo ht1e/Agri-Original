@@ -49,6 +49,7 @@ class CartController extends Controller
 
     public function addToCart(Request $request) {
         $idProduct = $request->input('idProduct');
+        $quantity = $request->input('quantityOfProduct');
         $idUser = Auth::user()->id;
         $idCart = GioHang::where('gh_mand', $idUser)->get('gh_ma')[0]->gh_ma;
 
@@ -60,7 +61,7 @@ class CartController extends Controller
             DB::table('chitietgiohang')
             ->where('ctgh_magh', $idCart)
             ->where('ctgh_masp', $idProduct)
-            ->update(['ctgh_soluong' => $alreadyProduct[0]->ctgh_soluong +1]);
+            ->update(['ctgh_soluong' => $alreadyProduct[0]->ctgh_soluong + $quantity]);
         }
         else {
             DB::table('chitietgiohang')
@@ -72,7 +73,7 @@ class CartController extends Controller
         }
 
 
-        return response()->json(['message' => 'Add success', 'idProduct' => $idProduct, 'idUser' => $idUser, 'idCart' => $idCart, 'already' => $alreadyProduct]);
+        return response()->json(['message' => 'Đã thêm vào giỏ hàng', 'idProduct' => $idProduct, 'idUser' => $idUser, 'idCart' => $idCart, 'already' => $alreadyProduct]);
 
     }
 }
