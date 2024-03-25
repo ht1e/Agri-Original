@@ -15,6 +15,7 @@ const ipName = $('#name')
 const ipPhone = $('#phone')
 const ipdescription = $('#description')
 const listItemRow = $$('.itemRow')
+const totalPrice = $('#totalPrice')
 
 
 
@@ -52,6 +53,7 @@ const handleSubmitCheckout = () => {
     const listProduct = getListItem()
     const listQuantity = listProduct.listQuantity
     const listItem = listProduct.listItem
+    const total = parseInt(totalPrice.getAttribute('data-price'))
 
     axios.post('/checkout', {
         address,
@@ -59,7 +61,8 @@ const handleSubmitCheckout = () => {
         phone,
         description,
         listItem,
-        listQuantity
+        listQuantity,
+        total
     })
     .then(response => {
         console.log(response)

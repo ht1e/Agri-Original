@@ -38,7 +38,7 @@ class OrderController extends Controller
         $title ='Đơn hàng đã chấp nhận';
 
 
-        $items = DonHang::where('dh_mattdh', 2)
+        $items = DonHang::where('dh_mattdh', 4)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
         ->get();
@@ -47,9 +47,9 @@ class OrderController extends Controller
     }
     public function rejectOrder() {
 
-        $title ='Đơn hàng đã từ chối';
+        $title ='Đơn hàng đã hủy';
 
-        $items = DonHang::where('dh_mattdh', 4)
+        $items = DonHang::where('dh_mattdh', 3)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
         ->get();
@@ -60,7 +60,7 @@ class OrderController extends Controller
 
         $title = 'Đơn hàng đã thành công';
 
-        $items = DonHang::where('dh_mattdh', 3)
+        $items = DonHang::where('dh_mattdh', 2)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
         ->get();
@@ -92,8 +92,21 @@ class OrderController extends Controller
         // dd($total[0]->total);
 
         
-        // dd($item);
+        //dd($details, $status, $total);
 
         return view('Admin.page.Order.detailsOrder', compact('details', 'id', 'status', 'total'));
+    }
+
+    public function acceptedOrder(Request $request) {
+
+        $type = $request->input('typeOrder');
+        $idOrder = $request->input('idOrder');
+
+        DB::table('donhang')->where('dh_ma', $idOrder)
+        ->update([
+            'dh_mattdh' => $type
+        ]);
+
+        return redirect()->route('orderDetails', ['id' => $idOrder]);
     }
 }

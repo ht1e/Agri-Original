@@ -47,3 +47,5 @@
 @section('scripts')
     @vite('./resources/js/client/cart.js')
 @endsection
+
+@section('title') <title>Giỏ hàng</title>@endsection

@@ -13,7 +13,7 @@
                 <tr class="leading-10 border-b">
                     <td class="border-r-2 py-2">{{$item->DH_Ma}}</td>
                     <td class="border-r-2 py-2">{{$item->DH_MaND}}</td>
-                    <td class="border-r-2 py-2">{{'12pm'}}</td>
+                    <td class="border-r-2 py-2">{{$item->DH_ThoiGian}}</td>
                     <td class="border-r-2 py-2">
                         @switch($item->DH_MaTTDH)
                             @case(1)
@@ -22,23 +22,25 @@
                             @case(2)
                                 <p class="px-4 rounded-xl border-2 inline-block bg-blue-300">{{$item->TTDH_Ten}}</p>
                                 @break
-                            @case(3)
+                            @case(4)
                                 <p class="px-4 rounded-xl border-2 inline-block bg-green-300">{{$item->TTDH_Ten}}</p>
                                 @break
-                            @case(4)
+                            @case(3)
                                 <p class="px-4 rounded-xl border-2 inline-block bg-red-500">{{$item->TTDH_Ten}}</p>
                                 @break
                         @endswitch
                     </td>
-                    <td class="border-r-2 py-2 text-xs">{{'description'}}</td>
+                    <td class="border-r-2 py-2 text-xs">{{$item->DH_GhiChu}}</td>
                     <td>
                         @if($item->DH_MaTTDH == 1)
-                            <form action="" method="POST">
-                                <input type="hidden" name="idOrder" value="1">
+                            <form action="{{route('acceptedOrder')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="idOrder" value="{{$item->DH_Ma}}">
+                                <input type="hidden" name="typeOrder" value="4">
                                 <button class="px-2 py-1 text-xs border-2 rounded-xl bg-green-300">Chấp nhận</button>
                             </form>
                         @endif
-                            <a class="px-2 py-1 text-xs border-2 rounded-xl bg-yellow-300 " href="{{route('orderDetails', ['id' => $item->DH_MaTTDH])}}">Xem chi tiết</a>
+                            <a class="px-2 py-1 text-xs border-2 rounded-xl bg-yellow-300 " href="{{route('orderDetails', ['id' => $item->DH_Ma])}}">Xem chi tiết</a>
                     </td>
                 </tr>
             @endforeach

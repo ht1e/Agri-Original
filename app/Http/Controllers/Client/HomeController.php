@@ -13,8 +13,10 @@ class HomeController extends Controller
 
         $categories = DanhMuc::all();
         $dataProducts = SanPham::skip(2)->take(4)->get();
+
+        $title = 'Trang chủ';
         //dd($dataProducts);
 
-         return view('client.pages.home', compact('categories', 'dataProducts'));
+         return view('client.pages.home', compact('categories', 'dataProducts', 'title'));
     }
 }

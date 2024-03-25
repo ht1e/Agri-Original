@@ -48,9 +48,9 @@
             <ul class="float-left w-full">
                 <li class="inline mx-8"><a href="{{route('home')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Trang Chủ</a></li>
                 <li class="inline mx-8"><a href="{{route('mainProduct')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Sản Phẩm</a></li>
-                <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Giới Thiệu</a></li>
+                {{-- <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Giới Thiệu</a></li> --}}
                 <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Liên Hệ</a></li>
-                <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Tin tức</a></li>
+                <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Chuẩn đoán bệnh</a></li>
             </ul>
         </div>
     </div>

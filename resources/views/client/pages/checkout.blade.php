@@ -70,16 +70,16 @@
                 <div class="col-span-1 text-center"><span>{{number_format(30000, 0, '', '.')}}đ</span></div>
             </div>
         </div>
-        <div class="total flex justify-end font-semibold">Tổng cộng:<span class="ml-2">{{number_format($total+30000, 0, '', '.')}}đ</span></div>
+        <div class="total flex justify-end font-semibold">Tổng cộng:<span class="ml-2" id="totalPrice" data-price="{{$total}}">{{number_format($total+30000, 0, '', '.')}}</span>đ</div>
         <div class="payment">
             <div class=""><h2 class="px-1 py-2 text-[18px] font-semibold">Phương thức thanh toán</h2></div>
             <div class="option">
-                <div class=""><span class="px-2 py-1 border border-primary-color">Thanh toán khi nhận hàng</span></div>
+                <div class=""><span class="px-4 py-2 border border-primary-color">Thanh toán khi nhận hàng</span></div>
             </div>
         </div>
        
         <div class="flex justify-end">
-            <button class="px-2 py-1 border border-primary-color hover:bg-primary-color hover:text-white" id="btnCheckout">Đặt hàng</button>
+            <button class="px-4 py-2 border border-primary-color hover:bg-primary-color hover:text-white" id="btnCheckout">Đặt hàng</button>
         </div>
     </div>
 
@@ -88,3 +88,5 @@
 @section('scripts')
     @vite('./resources/js/client/checkout.js')
 @endsection
+
+@section('title') <title>Thanh toán</title>@endsection

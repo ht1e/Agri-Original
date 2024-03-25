@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\DB;
 use App\Models\User;
 use Auth;
 
@@ -67,7 +67,7 @@ class AuthController extends Controller
             'lastName' => 'required',
             'birthday' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|regex:/^0[3,5,7,9][0-9]{8,9}$/',
+            'phone' => 'required||regex:/^0[3,5,7,9][0-9]{8,9}$/',
             'password' => 'required|min:8|max:16',
             'passwordCorrect' => 'required'
         ],
@@ -94,7 +94,38 @@ class AuthController extends Controller
         $phone = $request->input('phone');
         $password = $request->input('password');
 
-        dd($request);
+        $userByEmail = User::where('ND_email', $email)->first();
+        $userByPhone = User::where('ND_SDT', $phone)->first();
+
+        
+
+        if($userByEmail) {
+            $errorEmail = 'Email already exists';
+            //return redirect()->route('register')->with('email', $userByEmail->ND_email);
+            return view('client.pages.register', compact('errorEmail', 'email', 'phone', 'firstName', 'lastName', 'birthday'));
+        }
+
+        if($userByPhone) {
+            $errorPhone = 'Phone already exists';
+            //return redirect()->route('register')->with('phone', $userByPhone->ND_SDT);
+            return view('client.pages.register', compact('errorPhone' ,'email', 'phone', 'firstName', 'lastName', 'birthday'));
+        }
+
+
+        $idUser = DB::table('nguoidung')->insertGetId([
+            'nd_ho' => $firstName,
+            'nd_ten' => $lastName,
+            'nd_sdt' => $phone,
+            'nd_email' => $email,
+            'password' => bcrypt($request->input('password')),
+            'nd_mavt' => 1,
+        ]);
+
+        DB::table('giohang')->insert([
+            'gh_mand' => $idUser
+        ]);
+
+        return redirect()->route('register')->with('register-success', 'Đăng ký thành công!!'); 
     }
 
     public function get403() {

@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
+    <title>Đăng ký</title>
     @vite('./resources/css/app.css')
     @vite('./resources/js/client/register.js')
 </head>
@@ -33,7 +33,7 @@
                 </div> --}}
                 <div class="nav row-span-1">
                     <ul class="float-left w-full">
-                        <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Trang Chủ</a></li>
+                        <li class="inline mx-8"><a href="{{route('home')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Trang Chủ</a></li>
                         <li class="inline mx-8"><a href="{{route('mainProduct')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Sản Phẩm</a></li>
                         <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Giới Thiệu</a></li>
                         <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Liên Hệ</a></li>
@@ -44,7 +44,12 @@
         </div>
     </header>
     <main class="h-screen w-full">
-        <div class="w-[50%]  mx-auto bg-slate-50 mt-5">  
+        <div class="w-[50%]  mx-auto bg-slate-50 mt-5"> 
+            @if (session()->has('register-success'))
+            <div class="bg-green-200 text-green-600 text-center py-4">
+                <p>{{session('register-success')}}</p>
+            </div>
+            @endif 
             <div class="p-4">
                 <h1 class="w-full text-center text-xl font-bold">
                     ĐĂNG KÝ
@@ -55,14 +60,14 @@
                     @csrf
                     <label for="" class="py-4 my-2 inline-block relative w-[40%]"> 
                         <span class="absolute top-0 left-0 text-xs">Họ:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="firstName">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="firstName" @if(!empty($firstName)) value="{{$firstName}}" @else value="{{old('firstName')}}" @endif>
                         @error('firstName')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="ml-4 py-4 my-2 inline-block relative w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Tên:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="lastName">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="lastName" @if(!empty($lastName)) value="{{$lastName}}" @else value="{{old('lastName')}}" @endif>
                         @error('lastName')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
@@ -70,21 +75,23 @@
                     
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Ngày sinh:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full"  type="date" name="birthday">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full"  type="date" name="birthday" @if(!empty($birthday)) value="{{$birthday}}" @else value="{{old('birthday')}}" @endif>
                         @error('birthday')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                        <span class="absolute top-0 left-0 text-xs">Email:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="email">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="email" @if(!empty($email)) value="{{$email}}" @else value="{{old('email')}}" @endif>
+                        @if(!empty($errorEmail)) <span class="text-xs text-red-500">Email đã được sử dụng.</span> @endif
                         @error('email')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
                     </label>
                     <label for="" class="py-4 my-2 relative block w-[40%]">
                         <span class="absolute top-0 left-0 text-xs">Số điện thoại:</span>
-                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="phone">
+                        <input class="px-4 py-1 rounded-md outline-none  border focus:border-primary-color w-full" type="text" name="phone" @if(!empty($phone)) value="{{$phone}}" @else value="{{old('phone')}}" @endif>
+                        @if(!empty($errorPhone)) <span class="text-xs text-red-500">Số điện thoại đã được sử dụng.</span> @endif
                         @error('phone')
                             <span class="text-xs text-red-500">{{$message}}</span>
                         @enderror
@@ -107,7 +114,7 @@
                         @enderror
                     </label>
                     <div class=" flex justify-between items-center">
-                        <button type="submit" class="px-4 py-2 rounded-md bg-primary-color text-white">Đăng ký ngay</button>
+                        <button type="submit" class="px-4 py-2 rounded-md bg-primary-color text-white" id="btnRegister">Đăng ký ngay</button>
                         <p class="text-xs">Bạn đã có tài khoản?<a class="text-primary-color" href="{{route('login')}}">Đăng nhập ngay.</a></p>
                     </div>
                     

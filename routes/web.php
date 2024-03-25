@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ChartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,8 +90,13 @@ Route::prefix('/admin')->middleware('authmiddleware')->group(function() {
     Route::get('/order/rejectOrder', [OrderController::class, 'rejectOrder'])->name('rejectOrder');
     Route::get('/order/successOrder', [OrderController::class, 'successOrder'])->name('successOrder');
     Route::get('/order/orderDetails/{id}', [OrderController::class, 'orderDetails'])->name('orderDetails');
+    //accepted order
+    Route::post('/acceptedOrder', [OrderController::class, 'acceptedOrder'])->name('acceptedOrder');
 
     Route::get('/users', [UserController::class, 'index'])->name('mainUsers');
+ //   Route::get('/get-last-seven-day', [ChartController::class, 'getLastSevenDay'])->name('getLastSevenDays');
+    Route::get('/getDataOfWeek/{date}', [ChartController::class, 'getDataOfWeek'])->name('getDataOfWeek');
+    Route::get('/getDataOfYear/{year}', [ChartController::class, 'getDataOfYear'])->name('getDataOfYear');
 });
 
 

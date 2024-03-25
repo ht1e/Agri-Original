@@ -30,6 +30,7 @@ class CheckoutController extends Controller
         $phone = $request->input('phone');
         $listItem = $request->input('listItem');
         $listQuantity = $request->input('listQuantity');
+        $total = $request->input('total');
         $userId = Auth::user()->id;
         
 
@@ -40,7 +41,8 @@ class CheckoutController extends Controller
             'dh_mand' => $userId,
             'dh_tennguoinhan' => $name,
             'dh_diachi' => $address,
-            'dh_sdt' => $phone
+            'dh_sdt' => $phone,
+            'dh_tonggiatri' => $total
         ]);
 
 

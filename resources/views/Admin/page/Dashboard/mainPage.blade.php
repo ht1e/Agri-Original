@@ -4,16 +4,16 @@
     <div class="w-full h-full mt-5 px-2 grid grid-cols-6 grid-rows-3">
         <div class="top col-span-6 grid grid-cols-3 row-span-1 gap-16">
             <div class="col-span-1 text-center border-2 h-[90%]">
-                <h1>SOLD</h1>
-                <h2>{{number_format(10000, 0, '', '.')}}</h2>
+                <h1 class="text-2xl uppercase">SOLD</h1>
+                <h2 class="py-4 text-xl">{{number_format($totalSold, 0, '', '.')}}đ</h2>
             </div>
             <div class="col-span-1 text-center border-2 h-[90%]">
-                <h1>TOTAL MONEY</h1>
-                <h2>{{number_format(10000, 0, '', '.')}} VND</h2>
+                <h1 class="text-2xl uppercase">TOTAL USER</h1>
+                <h2 class="py-4 text-xl">{{number_format($totalUser, 0, '', '.')}}</h2>
             </div>
             <div class="col-span-1 text-center border-2 h-[90%]">
-                <h1>INCOME</h1>
-                <h2>{{number_format(1000, 0, '', '.')}} VND</h2>
+                <h1 class="text-2xl uppercase">total order</h1>
+                <h2 class="py-4 text-xl">{{number_format($totalOrder, 0, '', '.')}}</h2>
             </div>
         </div>
         <div class="mid row-span-2 col-span-6  grid grid-cols-3 gap-16">
@@ -21,20 +21,27 @@
                 <canvas id="myChart"></canvas>
             </div>
             <div class="selection col-span-1 border-2 text-center">
-                <h1>Thời Gian</h1>
-                <div class=" mt-5">
-                    <label for="" class="px-2 py-2 ">
-                        Từ:
-                        <input class="px-2 py-1 border-none rounded-xl" type="date" name="dateStart">
-                    </label>
+                <h1 class="px-4 py-2 border-b-2 text-xl">Thời Gian</h1>
+                <div class="py-5">
+                    <h2>Thống kê theo tuần</h2>
+                    <div class=" mt-5">
+                        <input class="px-2 py-1 border rounded-xl" type="week" name="selectWeek" id="selectWeek">
+                    </div>
+                    <button class="px-4 py-1 border-2 rounded-lg mt-5 hover:bg-slate-200" id="btnShowChartOfWeek">Xem</button>
                 </div>
-                <div class=" mt-10">
-                    <label for="" class="px-2 py-2 ">
-                        Đến:
-                        <input class="px-2 py-1 border-none rounded-xl" type="date" name="dateEnd">
-                    </label>
+
+                <div class="py-5 border-t">
+                    <h2>Thống kê theo năm</h2>
+                    <div class=" mt-5">
+                        <select class="px-2 py-1 border rounded-xl" type="year" name="selectYear" id="selectYear" value="{{date('Y')}}">
+                            @foreach ($listYear as $year)
+                                <option value="{{$year->year}}">{{$year->year}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <button class="px-4 py-1 border-2 rounded-lg mt-5 hover:bg-slate-200" id="btnShowChartOfYear">Xem</button>
                 </div>
-                <button class="px-4 py-1 border-2 rounded-lg mt-5 hover:bg-slate-200">Xem</button>
+                
             </div>
         </div>
     </div>

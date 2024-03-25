@@ -10,7 +10,7 @@
                 class="" 
                 width="70"
                 height="70"
-                src="https://th.bing.com/th/id/OIP.e9GMiEwOZA2neV4JBfJjwQHaHa?rs=1&pid=ImgDetMain" 
+                src="https://static.vecteezy.com/system/resources/previews/004/141/669/original/no-photo-or-blank-image-icon-loading-images-or-missing-image-mark-image-not-available-or-image-coming-soon-sign-simple-nature-silhouette-in-frame-isolated-illustration-vector.jpg" 
                 alt="">
             <input type="file"  name="imgProduct" class="mt-2" onchange="displayImage(this);">
             

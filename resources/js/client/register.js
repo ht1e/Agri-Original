@@ -1,3 +1,4 @@
+import Swal from "sweetalert2"
 const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
@@ -6,11 +7,9 @@ const passwordCorrect = $('#passwordCorrect')
 const correct = $('#correct')
 const incorrect = $('#incorrect')
 
-console.log(password, passwordCorrect, correct, incorrect);
+console.log(password, passwordCorrect, correct, incorrect, btnRegister);
 
 const handlePasswordCorrectChange = (e) => {
-    console.log(e.target.value)
-
     if(password.value == e.target.value) {
         correct.classList.remove('hidden')
         incorrect.classList.add('hidden')
@@ -21,3 +20,4 @@ const handlePasswordCorrectChange = (e) => {
 }
 
 passwordCorrect.addEventListener('keyup', handlePasswordCorrectChange)
+

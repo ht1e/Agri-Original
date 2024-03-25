@@ -68,3 +68,5 @@
 @section('scripts')
     @vite('./resources/js/client/product.js')
 @endsection
+
+@section('title') <title>Sản phẩm</title>@endsection

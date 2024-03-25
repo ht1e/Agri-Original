@@ -12,6 +12,7 @@ const listBtnAddToCart = $('#btnAddToCart')
 const priceTotal = $('#priceTotal')
 const inputPrice = $('#ipPriceTotal')
 const quantity = $('#quantity')
+const formCheckout = $('#formCheckout')
 
 const handleQuantityChange = (e) => {
     const quantityvalue = e.target.value
@@ -33,21 +34,55 @@ const handleAddToCart = (e) => {
 
     console.log(idProduct)
 
-    axios.post('/add-to-cart', {idProduct, quantityOfProduct})
-    .then((response) => {
+    if(e.target.getAttribute('data-check')) {
+        axios.post('/add-to-cart', {idProduct, quantityOfProduct})
+        .then((response) => {
+            Swal.fire({
+                position: "center",
+                icon: "success",
+                title: response.data.message,
+                showConfirmButton: false,
+                timer: 1500
+            });
+            console.log(response)
+        })
+        .catch((error) => console.log(error))
+    } 
+    else {
         Swal.fire({
-            position: "center",
-            icon: "success",
-            title: response.data.message,
-            showConfirmButton: false,
-            timer: 1500
+            icon: "error",
+            title: "Bạn chưa đăng nhập",
+            text: "Vui lòng đăng nhập để có giỏ hàng.",
+            footer: '<a href="http://127.0.0.1:8000/login">Đăng nhập ngay tại đây.</a>'
           });
-        console.log(response)
-    })
-    .catch((error) => console.log(error))
+    }
+
+    
 }
 
 listBtnAddToCart.addEventListener('click', handleAddToCart)
+
+//handle submit formCheckout
+
+const handleSubmitformCheckout = (e) => {
+    
+    if(e.target.getAttribute('data-check')) {
+
+    } 
+    else {
+        Swal.fire({
+            icon: "error",
+            title: "Bạn chưa đăng nhập",
+            text: "Vui lòng đăng nhập trước khi mua hàng.",
+            footer: '<a href="http://127.0.0.1:8000/login">Đăng nhập ngay tại đây.</a>'
+          });
+        e.preventDefault()
+    }
+
+   
+}
+
+formCheckout.addEventListener('submit', handleSubmitformCheckout)
 
 
 

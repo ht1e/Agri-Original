@@ -16,13 +16,13 @@
                         @case(1)
                             <div class="line absolute h-full w-[17%] top-0 left-0 border-2 border-green-300  -translate-y-0.5"></div>
                             @break
-                        @case(2)
+                        @case(4)
                             <div class="line absolute h-full w-[50%] top-0 left-0 border-2 border-green-300  -translate-y-0.5"></div>
                             @break
-                        @case(3)
+                        @case(2)
                             <div class="line absolute h-full w-[100%] top-0 left-0 border-2 border-green-300  -translate-y-0.5"></div>
                             @break
-                        @case(4)
+                        @case(3)
                             <div class="line absolute h-full w-[100%] top-0 left-0 border-2 border-red-500 -translate-y-0.5"></div>
                             @break
                     @endswitch
@@ -42,10 +42,10 @@
                 <tbody class="text-center">
                     @foreach($details as $key => $item)
                         <tr>
-                            <td>{{$item->DHO_Ten}}</td>
+                            <td>{{$item->SP_Ten}}</td>
                             <td>{{$item->CTDH_SoLuong}}</td>
-                            <td>{{number_format($item->DHO_Gia, 0, '', '.')}}đ</td>
-                            <td>{{number_format($item->DHO_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>
+                            <td>{{number_format($item->SP_Gia, 0, '', '.')}}đ</td>
+                            <td>{{number_format($item->SP_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>
                         </tr>
                     @endforeach
                 </tbody>
