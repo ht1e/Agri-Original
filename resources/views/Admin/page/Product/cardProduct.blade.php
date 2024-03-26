@@ -1,7 +1,7 @@
 @if(!empty($item))
     <div class=" shrink col-span-1 h-[380px]  border rounded-lg relative">
         <img class="w-full h-[150px] rounded-t-lg" 
-        src="https://th.bing.com/th/id/OIP.e9GMiEwOZA2neV4JBfJjwQHaHa?rs=1&pid=ImgDetMain" 
+        src="{{$item->SP_HinhAnh ? $item->SP_HinhAnh : '/storage/Images/Products/default_product.png'}}" 
         alt="">
         <div class="p-2">
             <h1 class="h-[65px]">{{$item->SP_Ten}}</h1>

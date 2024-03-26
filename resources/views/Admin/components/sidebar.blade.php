@@ -14,7 +14,7 @@
                 </ul>
             </li>
             <li class="px-2 py-3 ml-2">
-                <a href="{{route('mainProduct')}}" class="block text-[15px] py-2 border-b-2 hover:text-red-400">Sản Phẩm</a>
+                <a href="{{route('adminMainProduct')}}" class="block text-[15px] py-2 border-b-2 hover:text-red-400">Sản Phẩm</a>
                 <ul class="mt-2 ml-2">
                     <li class="py-2 hover:text-cyan-600">
                         <a href="{{route('addProduct')}}" class="text-[12px]">Thêm sản phẩm mới</a>

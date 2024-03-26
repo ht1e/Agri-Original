@@ -81,8 +81,8 @@ Route::prefix('/admin')->middleware('authmiddleware')->group(function() {
     Route::get('/product/add', [ProductsController::class, 'addProduct'])->name('addProduct');
     Route::post('/product/add', [ProductsController::class, 'handleAddProduct'])->name('handleAddProduct');
     Route::get('/product/update/{id}', [ProductsController::class, 'getUpdateProduct'])->name('getUpdateProduct');
-    Route::post('/product/update/{id}', [ProductsController::class, 'handleUpdateProduct'])->name('handleUpdateProduct');
-    Route::post('/product/delete/{id}', [ProductsController::class, 'handleDeleteProduct'])->name('handleDeleteProduct');
+    Route::post('/product/update', [ProductsController::class, 'handleUpdateProduct'])->name('handleUpdateProduct');
+    Route::post('/product/delete', [ProductsController::class, 'handleDeleteProduct'])->name('handleDeleteProduct');
 
     Route::get('/order', [OrderController::class, 'index'])->name('mainOrder');
     Route::get('/order/ordered', [OrderController::class, 'ordered'])->name('ordered');
