@@ -13,7 +13,7 @@
                 <tr class="leading-10 border-b">
                     <td class="border-r-2 py-2">{{$item->DH_Ma}}</td>
                     <td class="border-r-2 py-2">{{$item->DH_MaND}}</td>
-                    <td class="border-r-2 py-2">{{$item->DH_ThoiGian}}</td>
+                    <td class="border-r-2 py-2">{{date('d-m-Y', strtotime($item->DH_ThoiGian))}}</td>
                     <td class="border-r-2 py-2">
                         @switch($item->DH_MaTTDH)
                             @case(1)

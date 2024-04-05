@@ -15,6 +15,7 @@ use App\Http\Controllers\Admin\ProductsController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ChartController;
+use App\Http\Controllers\Admin\ImportController;
 
 /*
 |--------------------------------------------------------------------------
@@ -97,6 +98,12 @@ Route::prefix('/admin')->middleware('authmiddleware')->group(function() {
  //   Route::get('/get-last-seven-day', [ChartController::class, 'getLastSevenDay'])->name('getLastSevenDays');
     Route::get('/getDataOfWeek/{date}', [ChartController::class, 'getDataOfWeek'])->name('getDataOfWeek');
     Route::get('/getDataOfYear/{year}', [ChartController::class, 'getDataOfYear'])->name('getDataOfYear');
+
+    //
+    Route::get('/import', [ImportController::class, 'getImport'])->name('getImport');
+    Route::get('/import/add', [ImportController::class, 'getAddImport'])->name('getAddImport');
+    Route::post('/import/add', [ImportController::class, 'handleAddImport'])->name('handleAddImport');
+    Route::get('/import/{id}', [ImportController::class, 'getDetailsImport'])->name('getDetailsImport');
 });
 
 

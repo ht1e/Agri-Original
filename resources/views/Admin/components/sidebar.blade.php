@@ -42,7 +42,12 @@
                 <a href="{{route('mainUsers')}}" class="block text-[15px] py-2 border-b-2 hover:text-red-400">Người Dùng</a>
             </li>
             <li class="px-2 py-3 ml-2">
-                <a class="block text-[15px] py-2 border-b-2 hover:text-red-400" href="#">Hóa Đơn Nhập</a>
+                <a class="block text-[15px] py-2 border-b-2 hover:text-red-400" href="{{route('getImport')}}">Hóa Đơn Nhập</a>
+                <ul class="mt-2 ml-2">
+                    <li class="py-2 hover:text-cyan-600">
+                        <a href="{{route('getAddImport')}}" class="text-[12px]">Tạo mới hóa đơn nhập</a>
+                    </li>
+                </ul>
             </li>
             <li class="px-2 py-3 ml-2">
                 <form action="{{route('logout')}}" method="POST">

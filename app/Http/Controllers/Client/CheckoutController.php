@@ -35,7 +35,7 @@ class CheckoutController extends Controller
         
 
         $idOrder = DB::table('donhang')->insertGetId([
-            'dh_thoigian' => date('d-m-Y'),
+            'dh_thoigian' => date('Y-m-d'),
             'dh_ghichu' => $description,
             'dh_mattdh' => 1,
             'dh_mand' => $userId,
