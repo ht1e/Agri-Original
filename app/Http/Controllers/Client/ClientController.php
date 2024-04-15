@@ -29,7 +29,17 @@ class ClientController extends Controller
 
     public function getOrder($id) {
 
-        dd($id);
+        $details = DonHang::where('dh_ma', $id)
+        ->join('chitietdonhang', 'donhang.dh_ma', '=', 'chitietdonhang.ctdh_madh')
+        ->join('sanpham', 'chitietdonhang.ctdh_masp', '=', 'sanpham.sp_ma')
+        ->get();
+
+        $status = DonHang::where('dh_ma', $id)->first();
+
+        //dd($details);
+
+
+        return view('client.pages.orderdetail', compact('id', 'details', 'status'));
     }
 
 }

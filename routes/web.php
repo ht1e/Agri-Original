@@ -7,6 +7,7 @@ use App\Http\Controllers\Client\AccountController;
 use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Client\HomeController;
+use App\Http\Controllers\Client\ProfileController;
 use App\Http\Controllers\Auth\AuthController;
 ///Admin Controller
 use App\Http\Controllers\Admin\AdminController;
@@ -65,6 +66,8 @@ Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('getCh
 //profile
 Route::get('/profile', [ClientController::class, 'getProfile'])->name('getProfile');
 Route::get('profile/ordered/{id}', [ClientController::class, 'getOrder'])->name('getOrder');
+
+Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
 
 //403
 Route::get('/403', [AuthController::class, 'get403'])->name('403');
