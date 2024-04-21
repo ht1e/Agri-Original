@@ -37,7 +37,6 @@
                 <li class="mb-2 text-[18px]"><a href="https://www.tiktok.com/@newtech.vietnam"><i class="fa-brands fa-tiktok"></i></a></li>
                 <li class="mb-2 text-[18px] text-blue-500"><a href="https://www.facebook.com/nongnghiepnewtech"><i class="fa-brands fa-facebook"></i></a></li>
                 <li class="mb-2 text-[18px] text-red-500"><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                <li class="mb-2 text-[18px] text-white"><a href="#"><i class="fa-brands fa-instagram bg-gradient-to-tr from-[#405de6] to-[#fd1d1d] rounded-lg"></i></a></li>
                 <li class=" text-[18px]"><a href="#"><span class="text-[12px]">newtechcropsciencevn@gmail.com</span> <i class="fa-solid fa-envelope"></i></a></li>
             </ul>
         </div>

@@ -6,7 +6,7 @@
 <div class="w-full grid grid-cols-3">
     <div class="col-span-2 mr-2">
         <div class="h-[500px] p-4">
-            <img class="w-full h-full" src="https://www.hoptri.com/media/k2/items/cache/63955aa9869cf7707ada1662dbfb31e2_XL.jpg" alt="">
+            <img class="w-[80%] h-full" src="{{$data->SP_HinhAnh}}" alt="">
         </div>
     </div>
     <div class="col-span-1 p-2">
@@ -25,7 +25,9 @@
         </form>
         <button class="leading-[60px] blockborder px-3 mt-5 w-full bg-white text-primary-color text-[18px] border border-primary-color hover:text-white hover:bg-primary-color" id="btnAddToCart" data-key="{{$data->SP_Ma}}" @if(Auth::check()) data-check="1" @endif>Thêm vào giỏ hàng</button>
     </div>
-
+</div>
+<div class="">
+    @include('client.components.recomend', ['dataProducts' => $dataProducts, 'titleRecomend' => 'Sản phẩm cùng loại'])
 </div>
 
 @endsection

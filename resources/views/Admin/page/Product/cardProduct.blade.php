@@ -15,11 +15,11 @@
                 <input type="hidden" name="idProduct" value="{{$item}}">
                 <button class="px-2 py-1 mt-6 border-2 border-slate-400 rounded-md hover:bg-slate-200 text-xs">Chỉnh Sửa</button>
             </form>
-            <form class="ml-5" action="{{route('handleDeleteProduct', ['id' => $item->SP_Ma])}}" method="post">
+            {{-- <form class="ml-5" action="{{route('handleDeleteProduct', ['id' => $item->SP_Ma])}}" method="post">
                 @csrf
                 <input type="hidden" name="idProduct" value="{{$item->SP_Ma}}">
                 <button class="px-2 py-1 mt-6 border-2 border-slate-400 rounded-md hover:bg-slate-200 text-xs">Xóa</button>
-            </form>
+            </form> --}}
         </div>
     </div>
 @endif

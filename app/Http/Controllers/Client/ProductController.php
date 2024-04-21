@@ -23,13 +23,17 @@ class ProductController extends Controller
 
         $categories = DanhMuc::all();
 
+        $idCategory = SanPham::where('sp_ma', $id)->first()->SP_MaDM;
+
+        $dataProducts = SanPham::where('sp_madm', $idCategory)->inRandomOrder()->limit(4)->get();
+
         $data = SanPham::where('sp_ma', $id)
         ->join('danhmuc', 'sanpham.sp_madm', '=', 'danhmuc.dm_ma')
         ->first();
 
-        // dd($data);
+        //dd($idCategory, $dataProducts);
 
-        return view('client.pages.productDetails', compact('categories', 'data'));
+        return view('client.pages.productDetails', compact('categories', 'data', 'dataProducts'));
     }
 
     public function getCategory($id) {

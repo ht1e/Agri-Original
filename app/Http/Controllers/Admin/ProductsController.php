@@ -30,9 +30,11 @@ class ProductsController extends Controller
         $nameProduct = $request->input('nameProduct');
         $descriptionProduct = $request->input('descriptionProduct');
         $priceProduct = $request->input('priceProduct');
-        $category = $request->input('category');
+        $category = (int)$request->input('category');
         $folderPath = '/storage/Images/Products/';
         $path = '/public/storage/Images/Products/';
+
+        //dd($category);
 
         if($file) {
             $file_name = $file->getClientOriginalName();
@@ -69,6 +71,7 @@ class ProductsController extends Controller
         $idProduct = $request->input('idProduct');
         $folderPath = '/storage/Images/Products/';
         $path = '/public/storage/Images/Products/';
+
 
         if($file) {
             $file_name = $file->getClientOriginalName();

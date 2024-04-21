@@ -44,14 +44,14 @@
                     @foreach($details as $key => $item)
                         <tr>
                             <td>
-                                <a href="{{route('productDetails', ['id' => $item->SP_Ma])}}">
+                                <a class="flex justify-left" href="{{route('productDetails', ['id' => $item->SP_Ma])}}">
+                                    <img src="{{$item->SP_HinhAnh}}" class="w-[60px] h-[30px] mr-2" alt="">
                                     <span>{{$item->SP_Ten}}</span>
-                                    <img src="{{$item->HinhAnh}}" class="w-[60px] h-[30px]" alt="">
                                 </a>
                             </td>
                             <td>{{$item->CTDH_SoLuong}}</td>
-                            <td>{{number_format($item->SP_Gia, 0, '', '.')}}đ</td>
-                            <td>{{number_format($item->SP_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>
+                            <td>{{number_format($item->CTDH_Gia, 0, '', '.')}}đ</td>
+                            <td>{{number_format($item->CTDH_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>
                         </tr>
                     @endforeach
                 </tbody>

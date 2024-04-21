@@ -18,6 +18,9 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\ImportController;
 
+//BotMan Controller
+
+use App\Http\Controllers\BotMan\BotManController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +31,15 @@ use App\Http\Controllers\Admin\ImportController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Bot Man 
+
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
+
+
+
+//End Bot Man
+
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
@@ -71,6 +83,9 @@ Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name
 
 //403
 Route::get('/403', [AuthController::class, 'get403'])->name('403');
+
+//contact
+Route::get('/contact', [ClientController::class, 'getContact'])->name('getContact');
 
 
 Route::prefix('/admin')->middleware('authmiddleware')->group(function() {

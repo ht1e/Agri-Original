@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\GioHang;
 use App\Models\ChiTietGioHang;
 use App\Models\DonHang;
+use App\Models\SanPham;
 use App\Models\ChiTietDonHang;
 use Illuminate\Support\Facades\DB;
 use Auth;
@@ -46,18 +47,24 @@ class CheckoutController extends Controller
         ]);
 
 
-        foreach($listItem as $key => $item) { 
+        foreach($listItem as $key => $item) {
+            
+            $price = SanPham::where('sp_ma', $item)
+            ->first()->SP_Gia;
+
+            
             DB::table('chitietdonhang')->insert([
                 'ctdh_madh' => $idOrder,
                 'ctdh_masp' => $item,
                 'ctdh_soluong' => $listQuantity[$key],
+                'ctdh_gia' => $price
             ]);
         }
 
         
 
 
-        return response()->json(['idOrder' => $idOrder, 'message' => 'Đặt hàng thành công']);
+        return response()->json(['message' => 'Đặt hàng thành công', 'idOrder' => $idOrder]);
         // return redirect()->route('checkout', ['items' => $items]);
     }
 
