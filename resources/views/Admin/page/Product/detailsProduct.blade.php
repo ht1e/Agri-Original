@@ -34,9 +34,9 @@
         </label>
         <label for="" class="block my-10">
             Danh Mục:
-            <select type="text" name="category" class="px-5 py-1 ml-2  bg-slate-200 rounded-md" @if(!empty($item)) value="{{'$item->TH_Ten'}}" @endif>
+            <select type="text" name="category" class="px-5 py-1 ml-2  bg-slate-200 rounded-md" >
                 @foreach ($categories as $category)
-                <option value="{{$category->DM_Ma}}">{{$category->DM_Ten}}</option>
+                <option value="{{$category->DM_Ma}}" @if(!empty($item) && $item->SP_MaDM == $category->DM_Ma) selected  @endif>{{$category->DM_Ten}}</option>
                 @endforeach
             </select>
         </label>

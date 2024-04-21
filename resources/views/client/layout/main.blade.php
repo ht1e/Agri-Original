@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="icon" href="https://newtechvietnam.com/wp-content/uploads/2024/01/LOGO-1.png">
+    {{-- <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/assets/css/chat.min.css"> --}}
     @yield('links')
     @yield('title')
     @vite('./resources/css/app.css')
@@ -28,6 +29,16 @@
     </footer>
 
     @yield('scripts')
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    <script>
+        var botmanWidget = {
+            title: 'NewTech VietNam',
+            aboutText: 'Botman',
+            introMessage: "Xin chào, Tôi có thể giúp gì cho bạn?",
+            desktopWidth: 300,
+            desktopHeight: 370
+        };
+    </script>
     
 </body>
 </html>

@@ -16,7 +16,7 @@
     <div class="pl-2 py-4">
         <h1 class="font-semibold py-2">Sản phẩm mới</h1>
         <div class=" grid grid-cols-4 gap-2">
-            @foreach($dataProducts as $key => $product)
+            @foreach($newProducts as $key => $product)
             @include('client.components.cardProduct', ['item' => $product])
             @endforeach
         </div>
@@ -24,7 +24,7 @@
     <div class="pl-2 py-4">
         <h1 class="font-semibold py-2">Sản phẩm bán chạy</h1>
         <div class=" grid grid-cols-4 gap-2">
-            @foreach($dataProducts as $key => $product)
+            @foreach($mostProducts as $key => $product)
             @include('client.components.cardProduct', ['item' => $product])
             @endforeach
         </div>

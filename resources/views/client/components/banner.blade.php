@@ -3,9 +3,9 @@
         <div class="splide" role="group" aria-label="Splide Basic HTML Example">
             <div class="splide__track">
                   <ul class="splide__list">
-                      <li class="splide__slide"><a href=""><img class=" h-[250px] w-full" src="/storage/Images/banner/banner1.png" alt=""></a></li>
-                      <li class="splide__slide"><a href=""><img class=" h-[250px] w-full" src="/storage/Images/banner/banner2.png" alt=""></a></li>
-                      <li class="splide__slide"><a href=""><img class=" h-[250px] w-full" src="/storage/Images/banner/banner3.png" alt=""></a></li>
+                      <li class="splide__slide"><a href="{{route('productDetails', ['id' => 12])}}"><img class=" h-[250px] w-full" src="/storage/Images/banner/banner1.png" alt=""></a></li>
+                      <li class="splide__slide"><a href="{{route('productDetails', ['id' => 15])}}"><img class=" h-[250px] w-full" src="/storage/Images/banner/banner2.png" alt=""></a></li>
+                      <li class="splide__slide"><a href="{{route('productDetails', ['id' => 21])}}"><img class=" h-[250px] w-full" src="/storage/Images/banner/banner3.png" alt=""></a></li>
                   </ul>
             </div>
           </div>

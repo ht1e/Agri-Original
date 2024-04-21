@@ -42,4 +42,10 @@ class ClientController extends Controller
         return view('client.pages.orderdetail', compact('id', 'details', 'status'));
     }
 
+
+    public function getContact() {
+        
+        return view('client.pages.contact');
+    }
+
 }

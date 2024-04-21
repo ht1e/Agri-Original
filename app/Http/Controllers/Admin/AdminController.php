@@ -15,8 +15,8 @@ class AdminController extends Controller
         $listYear = DB::select('select distinct YEAR(DH_ThoiGian) as year from donhang');
 
         $totalUser = User::count() - 1;
-        $totalOrder = DonHang::count();
-        $totalSold = DonHang::sum('dh_tonggiatri');
+        $totalOrder = DonHang::where('dh_mattdh', 2)->count();
+        $totalSold = DonHang::where('dh_mattdh', 2)->sum('dh_tonggiatri');
 
         //dd($listYear);
 

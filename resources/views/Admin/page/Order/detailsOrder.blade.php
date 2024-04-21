@@ -44,8 +44,8 @@
                         <tr>
                             <td>{{$item->SP_Ten}}</td>
                             <td>{{$item->CTDH_SoLuong}}</td>
-                            <td>{{number_format($item->SP_Gia, 0, '', '.')}}đ</td>
-                            <td>{{number_format($item->SP_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>
+                            <td>{{number_format($item->CTDH_Gia, 0, '', '.')}}đ</td>
+                            <td>{{number_format($item->CTDH_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>
                         </tr>
                     @endforeach
                 </tbody>

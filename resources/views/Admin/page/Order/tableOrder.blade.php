@@ -40,6 +40,14 @@
                                 <button class="px-2 py-1 text-xs border-2 rounded-xl bg-green-300">Chấp nhận</button>
                             </form>
                         @endif
+                        @if($item->DH_MaTTDH == 4)
+                            <form action="{{route('acceptedOrder')}}" method="POST">
+                                @csrf
+                                <input type="hidden" name="idOrder" value="{{$item->DH_Ma}}">
+                                <input type="hidden" name="typeOrder" value="2">
+                                <button class="px-2 py-1 text-xs border-2 rounded-xl bg-green-300">Hoàn thành</button>
+                            </form>
+                        @endif
                             <a class="px-2 py-1 text-xs border-2 rounded-xl bg-yellow-300 " href="{{route('orderDetails', ['id' => $item->DH_Ma])}}">Xem chi tiết</a>
                     </td>
                 </tr>
