@@ -19,10 +19,12 @@ class CheckoutController extends Controller
         $request->validate([
             'address' => 'required',
             'name' => 'required',
+            'phone' => 'required',
         ],
         [
             'address.required' => 'Địa chỉ người nhận là bắt buộc.',
             'name.required' => 'Tên người nhận là bắt buộc.',
+            'phone.required' => 'Số điện thoại người nhận là bắt buộc'
         ]);
 
         $description = $request->input('description');
@@ -60,6 +62,13 @@ class CheckoutController extends Controller
                 'ctdh_gia' => $price
             ]);
         }
+
+
+        $idCart = GioHang::where('gh_mand', Auth::user()->id)->first()->GH_Ma;
+
+        ChiTietGioHang::where('ctgh_magh', $idCart)
+        ->whereIn('ctgh_masp', $listItem)->delete();
+
 
         
 

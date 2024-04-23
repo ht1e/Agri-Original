@@ -22,7 +22,7 @@ class BotManController extends Controller
             if($message == 'bắt đầu') {
                 $this->askName($botman);
             }
-            if($message == '') {
+            else {
 
             }
         });
@@ -32,19 +32,19 @@ class BotManController extends Controller
 
     }
 
-    public function replyIMG($botman) {
+    // public function replyIMG($botman) {
 
-        $linkImg = asset('storage/Images/logo/logo.png');
-        $attachment = new Image($linkImg);
+    //     $linkImg = asset('storage/Images/logo/logo.png');
+    //     $attachment = new Image($linkImg);
 
        
 
-        $message = OutgoingMessage::create($linkImg)
-        ->withAttachment($attachment);
+    //     $message = OutgoingMessage::create($linkImg)
+    //     ->withAttachment($attachment);
 
-        $botman->reply($message);
+    //     $botman->reply($message);
 
-    }
+    // }
 
     public function askName($botman) {
 
@@ -53,9 +53,9 @@ class BotManController extends Controller
             $this->say('Xin chào '.$name);
 
 
-            $this->ask("'Tôi có thể giúp gì cho bạn'", function (Answer $answer) {
+            $this->ask("Tôi có thể giúp gì cho bạn", function (Answer $answer) {
                 $request = $answer->getText();
-                if($request == 'Tư vấn sản phẩm cho tôi') {
+                if(strtolower($request) == 'tư vấn sản phẩm cho tôi') {
                     $items = DanhMuc::all();
                     foreach($items as $key => $item) {
                         $this->say($item->DM_Ten);
@@ -64,9 +64,32 @@ class BotManController extends Controller
 
                         $asw = $answer->getText();
 
-                        $idCategory = DanhMuc::where('dm_ten', 'LIKE','%'.$asw.'%')->get();
+                        $category = DanhMuc::whereRaw("LOWER(`dm_ten`) LIKE '%".strtolower($asw)."%'")->first();
 
-                        $this->say("bạn chọn ". $idCategory->DM_Ten);
+                        $products = SanPham::where('sp_madm', $category->DM_Ma)->get();
+
+
+                        foreach($products as $product) {
+                            $linkImg = asset($product->SP_HinhAnh);
+                            $attachment = new Image($linkImg);
+                        
+                            // $message = OutgoingMessage::create($product->SP_Ten.'<br>'.$product->SP_MoTa.'<br>'.number_format($product->SP_Gia, 0, '', '.').'đ')
+                            // ->withAttachment($attachment);
+
+                            $des = $product->SP_Ten.'<br>'.$product->SP_MoTa.'<br>'.number_format($product->SP_Gia, 0, '', '.').'đ';
+
+                            $message = OutgoingMessage::create($des)
+                            ->withAttachment($attachment);
+
+                            //route('productDetails', ['id' => $product->SP_Ma])
+    
+                            $this->say($message);
+                        }
+                        
+                    
+
+
+                        //$this->say("bạn chọn ". $category->DM_Ten);
                     });
 
 

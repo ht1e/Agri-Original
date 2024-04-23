@@ -97,6 +97,8 @@ class AuthController extends Controller
         $userByEmail = User::where('ND_email', $email)->first();
         $userByPhone = User::where('ND_SDT', $phone)->first();
 
+        //dd($birthday);
+
         
 
         if($userByEmail) {
@@ -117,6 +119,7 @@ class AuthController extends Controller
             'nd_ten' => $lastName,
             'nd_sdt' => $phone,
             'nd_email' => $email,
+            'nd_ngaysinh' => $birthday,
             'password' => bcrypt($request->input('password')),
             'nd_mavt' => 1,
         ]);

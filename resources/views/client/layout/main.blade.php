@@ -34,7 +34,7 @@
         var botmanWidget = {
             title: 'NewTech VietNam',
             aboutText: 'Botman',
-            introMessage: "Xin chào, Tôi có thể giúp gì cho bạn?",
+            introMessage: "Xin chào, Tôi có thể giúp gì cho bạn? nhập 'bắt đầu' để bắt đầu cuộc trò chuyện",
             desktopWidth: 300,
             desktopHeight: 370
         };

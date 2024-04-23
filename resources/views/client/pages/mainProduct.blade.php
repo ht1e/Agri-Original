@@ -4,7 +4,7 @@
     <div class="w-full p-2 "> 
         <div class="sidebarContainer ">
             @if(!empty($keysearch))
-                @include('client.components.sidebar', ['categories' => $categories, 'keysearch' => $keysearch])
+                @include('client.components.sidebarProduct', ['categories' => $categories, 'keysearch' => $keysearch])
             @else
                 @include('client.components.sidebarProduct', ['categories' => $categories])
             @endif

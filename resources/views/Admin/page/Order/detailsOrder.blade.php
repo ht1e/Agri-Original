@@ -41,8 +41,8 @@
                 </thead>
                 <tbody class="text-center">
                     @foreach($details as $key => $item)
-                        <tr>
-                            <td>{{$item->SP_Ten}}</td>
+                        <tr class="py-2">
+                            <td class="text-left"><img src="{{$item->SP_HinhAnh}}" class="w-[80px] h-[50px] inline-block" alt=""><span>{{$item->SP_Ten}}</span></td>
                             <td>{{$item->CTDH_SoLuong}}</td>
                             <td>{{number_format($item->CTDH_Gia, 0, '', '.')}}đ</td>
                             <td>{{number_format($item->CTDH_Gia*$item->CTDH_SoLuong, 0, '', '.')}}đ</td>

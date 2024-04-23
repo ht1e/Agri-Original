@@ -14,7 +14,6 @@ class ProductController extends Controller
 
         $categories = DanhMuc::all();
 
-        //dd($data);
 
         return view('client.pages.mainProduct', compact('data', 'categories'));
     }

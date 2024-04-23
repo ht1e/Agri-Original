@@ -48,7 +48,7 @@
                 </div>
                 <div class=" py-5 text-xl">
                     <label for="">
-                        Ngày sinh: <span class="text-slate-400 px-2">{{Auth::user()->ND_NgaySinh}}</span>
+                        Ngày sinh: <span class="text-slate-400 px-2">{{date('d-m-Y', strtotime(Auth::user()->ND_NgaySinh))}}</span>
                     </label>
                 </div>
                 <div class=" py-5 text-xl">

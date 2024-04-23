@@ -10,11 +10,12 @@
         </div>
     </div>
     <div class="col-span-1 p-2">
-        <h1 class="leading-[60px] my-5 text-primary-color font-semibold">{{$data->SP_Ten}}</h1>
-        <h2 class="leading-[60px] my-5">Loại sản phẩm: {{$data->DM_Ten}}</h2>
-        <p class="leading-[60px] block my-5">Giá: <span id="priceTotal">{{number_format($data->SP_Gia, 0, '', '.')}}d</span></p>
+        <h1 class="leading-[60px] my-5 text-primary-color font-semibold text-2xl">{{$data->SP_Ten}}</h1>
+        <p class="text-[14px]">{{$data->SP_MoTa}}</p>
+        <h2 class="leading-[60px] my-5 font-bold">Loại sản phẩm: {{$data->DM_Ten}}</h2>
+        <p class="leading-[60px] block my-5 font-bold">Giá: <span id="priceTotal">{{number_format($data->SP_Gia, 0, '', '.')}}đ</span></p>
         <form action="{{route('getCheckout')}}" method="get" id="formCheckout" @if(Auth::check()) data-check="1" @endif>
-            <label for="" class="block my-5">
+            <label for="" class="block my-5 font-bold">
                 Số lượng:
                 <input class="px-2 py-1 text-center w-32 rounded-md border border-slate-300 focus:outline-none focus:border-primary-color" type="number" name="quantity" id="quantity" data-price="{{$data->SP_Gia}}">
                 <input type="hidden" name="total" id="ipPriceTotal" value="2000">

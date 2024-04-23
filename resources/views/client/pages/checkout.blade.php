@@ -48,7 +48,7 @@
             <div class="contentTable mt-2">
                 @foreach($data as $key => $item)
                 <div class="itemRow grid grid-cols-5 px-5 py-2" data-key="{{$item->SP_Ma}}" data-quantity="{{$item->CTGH_SoLuong}}">
-                    <div class="col-span-2 text-center flex items-center"><img class="h-[20px] w-[30px]" src="https://www.hoptri.com/media/k2/items/cache/23da450944f0818162562a06dc761501_XL.jpg" alt=""><span class="ml-4">{{$item->SP_Ten}}</span></div>
+                    <div class="col-span-2 text-center flex items-center"><img class="h-[20px] w-[30px]" src="{{$item->SP_HinhAnh}}" alt=""><span class="ml-4">{{$item->SP_Ten}}</span></div>
                     <div class="col-span-1 text-center"><span>{{$item->CTGH_SoLuong}}</span></div>
                     <div class="col-span-1 text-center"><span>{{number_format($item->SP_Gia, 0, '', '.')}}đ</span></div>
                     <div class="col-span-1 text-center"><span>{{number_format($item->SP_Gia*$item->CTGH_SoLuong, 0, '', '.')}}đ</span></div>

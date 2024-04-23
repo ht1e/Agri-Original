@@ -15,6 +15,7 @@ class OrderController extends Controller
 
         $items = DonHang::join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
+        ->orderBy('donhang.dh_ma', 'desc')
         ->get();
         // dd($items);
 
