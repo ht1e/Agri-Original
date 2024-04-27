@@ -79,6 +79,8 @@ Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('getCh
 Route::get('/profile', [ClientController::class, 'getProfile'])->name('getProfile');
 Route::get('profile/ordered/{id}', [ClientController::class, 'getOrder'])->name('getOrder');
 
+Route::post('/profile/ordered/cancelorder', [ClientController::class, 'cancelOrder'])->name('cancelOrder');
+
 Route::post('/updateProfile', [ProfileController::class, 'updateProfile'])->name('updateProfile');
 
 //403

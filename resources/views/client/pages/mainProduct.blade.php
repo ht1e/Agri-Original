@@ -18,14 +18,14 @@
                         @if(!empty($sort))
                         <select name="sort" id="sort" value="{{$sort}}">
                             <option disabled > -- select an option -- </option>
-                            <option value="1">Sắp xếp tăng dần</option>
-                            <option value="2">Sắp xếp giảm dần</option>
+                            <option value="1">Sắp xếp giá tăng dần</option>
+                            <option value="2">Sắp xếp giá giảm dần</option>
                         </select>
                         @else
                         <select name="sort" id="sort">
                             <option disabled selected value> -- select an option -- </option>
-                            <option value="1">Sắp xếp tăng dần</option>
-                            <option value="2">Sắp xếp giảm dần</option>
+                            <option value="1">Sắp xếp giá tăng dần</option>
+                            <option value="2">Sắp xếp giá giảm dần</option>
                         </select>
                         @endif
                     </li>
@@ -34,14 +34,14 @@
                         @if(!empty($inputPrice))
                         <label for="">
                             Giá: 
-                            <input name="inputPrice" id="inputPrice" type="range" value="{{$inputPrice}}" min="0" max="1000000" >
+                            <input name="inputPrice" id="inputPrice" type="range" value="{{$inputPrice}}" min="0" max="{{$pricemost}}" >
                             {{-- oninput="this.nextElementSibling.value = this.value" --}}
                             <output id="output">{{number_format($inputPrice, 0, '', '.')}}</output>
                         </label>
                         @else
                         <label for="">
                             Giá: 
-                            <input name="inputPrice" id="inputPrice" type="range" value="0" min="0" max="1000000" >
+                            <input name="inputPrice" id="inputPrice" type="range" value="0" min="0" max="{{$pricemost}}" >
                             {{-- oninput="this.nextElementSibling.value = this.value" --}}
                             <output id="output">0</output>
                         </label>

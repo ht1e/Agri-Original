@@ -61,7 +61,13 @@
             </table>
             <div class="mt-10 text-right">
                 <h2 class="text-xl">Tổng: {{number_format($status->DH_TongGiaTri, 0, '', '.')}}đ</h2>
-                <button class="btnCancel mt-2 py-2 px-4 border bg-red-500 text-white">Hủy đơn hàng</button>
+                @if($status->MaTTDH == 1)
+                <form action="{{route('cancelOrder', ['id' => $id])}}" method="post">
+                    @csrf
+                    <input type="hidden" value="{{$id}}" name="idCancel">
+                    <button class=" mt-2 py-2 px-4 border bg-red-500 text-white" id="btnCancel">Hủy đơn hàng</button>
+                </form>
+                @endif
             </div>
         </div>
     </div>

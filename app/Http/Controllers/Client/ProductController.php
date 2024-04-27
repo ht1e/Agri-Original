@@ -14,8 +14,11 @@ class ProductController extends Controller
 
         $categories = DanhMuc::all();
 
+        $pricemost = SanPham::max('sp_gia');
 
-        return view('client.pages.mainProduct', compact('data', 'categories'));
+
+
+        return view('client.pages.mainProduct', compact('data', 'categories', 'pricemost'));
     }
 
     public function getProductDetails($id) {
@@ -43,8 +46,10 @@ class ProductController extends Controller
 
         $categories = DanhMuc::all();
 
+        $pricemost = SanPham::max('sp_gia');
 
-        return view('client.pages.mainProduct', compact('data', 'categories'));
+
+        return view('client.pages.mainProduct', compact('data', 'categories', 'pricemost'));
     }
 
     public function getSearch(Request $request) {
@@ -52,14 +57,17 @@ class ProductController extends Controller
         $data = SanPham::where('sp_ten', 'LIKE', '%'.$keysearch.'%')->paginate(8);
         $categories = DanhMuc::all();
 
+        $pricemost = SanPham::max('sp_gia');
+
         //dd($keySearch, $data);
 
-        return view('client.pages.mainProduct', compact('data', 'categories', 'keysearch'));
+        return view('client.pages.mainProduct', compact('data', 'categories', 'keysearch', 'pricemost'));
     }
 
 
     public function filterProduct(Request $request) {
         $categories = DanhMuc::all();
+        $pricemost = SanPham::max('sp_gia');
 
         if($request->has('sort')) {
             $sort = $request->input('sort');
@@ -78,7 +86,7 @@ class ProductController extends Controller
                 ->paginate(8);
             }
 
-            return view('client.pages.mainProduct', compact('data', 'categories', 'sort', 'inputPrice'));
+            return view('client.pages.mainProduct', compact('data', 'categories', 'sort', 'inputPrice', 'pricemost'));
         }
         else {
             $inputPrice = $request->input('inputPrice');
@@ -87,7 +95,7 @@ class ProductController extends Controller
             ->paginate(8); 
 
 
-            return view('client.pages.mainProduct', compact('data', 'categories', 'inputPrice'));
+            return view('client.pages.mainProduct', compact('data', 'categories', 'inputPrice', 'pricemost'));
         }
     } 
 }
