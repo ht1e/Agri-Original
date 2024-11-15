@@ -122,3 +122,5 @@
 @section('scripts')
     @vite('./resources/js/client/profile.js')
 @endsection
+
+@section('title') <title>Tài khoản</title> @endsection

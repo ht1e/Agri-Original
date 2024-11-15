@@ -16,13 +16,13 @@ class ChartController extends Controller
 
         for($i=$dayofweek-1 ; $i>=1; $i--) {
             $day = $date.' -'.$i.' days';
-            $sumday = (int)DonHang::where('dh_thoigian', '=' , date('Y-m-d', strtotime($day)))->sum('dh_tonggiatri');
+            $sumday = (int)DonHang::where('dh_thoigian', '=' , date('Y-m-d', strtotime($day)))->where('dh_mattdh', '=', 2)->sum('dh_tonggiatri');
             array_push($data,$sumday);
         }
 
         for($i=$dayofweek; $i <= 7 ; $i++) { 
             $day = $date.' +'.$i-$dayofweek.' days';
-            $sumday = (int)DonHang::where('dh_thoigian', '=' , date('Y-m-d', strtotime($day)))->sum('dh_tonggiatri');
+            $sumday = (int)DonHang::where('dh_thoigian', '=' , date('Y-m-d', strtotime($day)))->where('dh_mattdh', '=', 2)->sum('dh_tonggiatri');
             array_push($data,$sumday);
         }
 
@@ -49,7 +49,7 @@ class ChartController extends Controller
         $data = [];
 
         for($i = 1; $i<= 12; $i++) {
-            $totalOfMonth = DB::select('select sum(dh_tonggiatri) as tongthang from donhang where YEAR(dh_thoigian) = '. $year .' and MONTH(dh_thoigian) ='. $i);
+            $totalOfMonth = DB::select('select sum(dh_tonggiatri) as tongthang from donhang where dh_mattdh = 2 and YEAR(dh_thoigian) = '. $year .' and MONTH(dh_thoigian) ='. $i);
 
             if($totalOfMonth[0]->tongthang == null) {
                 array_push($data, 0);

@@ -4,16 +4,28 @@
 <div class="p-2">
     <h1 class="text-center text-xl font-semibold">Thêm sản phẩm mới</h1>
     <div class="p-5">
-        <div class="mb-6">
-            <label for="" class="relative">Nhà cung cấp: 
-                <select name="idProvider" id="selectProvider" class="border px-2 rounded-md">
-                    <option value="" selected disabled hidden>--- Chọn nhà cung cấp ---</option>
-                    @foreach ($listProvider as $item)
-                    <option value="{{$item->NCC_Ma}}">{{$item->NCC_Ten}}</option>
-                    @endforeach
-                </select>
-                <span class="text-xs absolute right-0 -bottom-5 text-red-400 hidden">Không được để trống</span>
+        <div class="mb-6 flex gap-5">
+            <label for="" class="relative" >Nhà cung cấp:
+                <div class="" id="listVendor">
+                    <select name="idProvider" id="selectProvider" class="border px-2 rounded-md">
+                        <option value="" selected disabled hidden>--- Chọn nhà cung cấp ---</option>
+                        @foreach ($listProvider as $item)
+                        <option value="{{$item->NCC_Ma}}">{{$item->NCC_Ten}}</option>
+                        @endforeach
+                    </select>
+                    <span class="text-xs absolute right-0 -bottom-5 text-red-400 hidden">Không được để trống</span>
+                </div>
+
+                <div class="hidden" id="boxAddVendor">
+                    <input class="border-2 rounded-md px-4" type="text" id="nameVendor" name="nameVendor">
+                    <button id="btnAddVendor" class="px-2 border-2 rounded-md border-primary-color">Thêm</button>
+
+                    <button id="cancelAddVendor" class="px-2 border-2 rounded-md border-red-400">Hủy</button>
+
+                </div>
             </label>
+
+            <button id="btnShowAddVendor" class="px-2 py-4 rounded-lg border-2 ml-5 border-primary-color text-primary-color">Thêm mới nhà cung cấp</button>
         </div>
         <div class="containerItem">
             <div class="item my-4 px-4 py-5 border rounded-md relative">

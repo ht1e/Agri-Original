@@ -1,6 +1,5 @@
 import axios from 'axios';
 import Swal from 'sweetalert2'
-
 const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
@@ -13,6 +12,8 @@ const priceTotal = $('#priceTotal')
 const inputPrice = $('#ipPriceTotal')
 const quantity = $('#quantity')
 const formCheckout = $('#formCheckout')
+
+
 
 const handleQuantityChange = (e) => {
     const quantityvalue = e.target.value
@@ -68,6 +69,39 @@ const handleSubmitformCheckout = (e) => {
     
     if(e.target.getAttribute('data-check')) {
 
+        const total = parseInt(inputPrice.value)
+        const qtt = parseInt(quantity.value)
+        const id = parseInt($('#idProduct').value)
+
+        if(qtt > 0) {
+            const buynow = {
+                total,
+                quantity : qtt,
+                id
+            }
+            console.log(buynow)
+
+            localStorage.setItem('BuyNow', JSON.stringify(buynow))
+
+            if(localStorage.getItem('listItemChecked') && localStorage.getItem('totalBuy'))
+                localStorage.removeItem('listItemChecked')
+                localStorage.removeItem('totalBuy')
+
+
+            window.location.href = "http://127.0.0.1:8000/checkout"
+
+        } 
+        else {
+            Swal.fire({
+                icon: "error",
+                title: "Vui lòng nhập số lượng",
+                text: "Bạn phải nhập số lượng cần mua, số lượng phải lớn hơn 0",
+                // footer: '<a href="http://127.0.0.1:8000/login">Đăng nhập ngay tại đây.</a>'
+              });
+        }
+
+        
+
     } 
     else {
         Swal.fire({
@@ -82,7 +116,9 @@ const handleSubmitformCheckout = (e) => {
    
 }
 
-formCheckout.addEventListener('submit', handleSubmitformCheckout)
+const btnBuyNow = $('#btnBuyNow')
+
+btnBuyNow.addEventListener('click', handleSubmitformCheckout)
 
 
 

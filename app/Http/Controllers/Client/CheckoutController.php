@@ -57,8 +57,8 @@ class CheckoutController extends Controller
             
             DB::table('chitietdonhang')->insert([
                 'ctdh_madh' => $idOrder,
-                'ctdh_masp' => $item,
-                'ctdh_soluong' => $listQuantity[$key],
+                'ctdh_masp' => (int)$item,
+                'ctdh_soluong' => (int)$listQuantity[$key],
                 'ctdh_gia' => $price
             ]);
         }
@@ -79,55 +79,88 @@ class CheckoutController extends Controller
 
     public function getCheckout(Request $request) {
 
-        $idUser = Auth::user()->id;
-        $idCart = GioHang::where('gh_mand', $idUser)->get('gh_ma')[0]->gh_ma;
-        $total = $request->input('total');
+        // if($_GET)
+            // dd($_GET);
 
-        if($request->has('idProduct') && $request->has('quantity')) {
-            $idProduct = $request->input('idProduct');
-            $quantity = $request->input('quantity');
+        // $idUser = Auth::user()->id;
+        // $idCart = GioHang::where('gh_mand', $idUser)->get('gh_ma')[0]->gh_ma;
+        // $total = $request->input('total');
 
-            //dd($idProduct, $quantity, $total);
+        // if($request->has('idProduct') && $request->has('quantity')) {
+        //     $idProduct = $request->input('idProduct');
+        //     $quantity = $request->input('quantity');
 
-            $alreadyProduct = ChiTietGioHang::where('ctgh_magh', $idCart)
-            ->where('ctgh_masp', $idProduct)
-            ->get('ctgh_soluong');
+        //     //dd($idProduct, $quantity, $total);
 
-            if(sizeof($alreadyProduct) > 0) {
-                DB::table('chitietgiohang')
-                ->where('ctgh_magh', $idCart)
-                ->where('ctgh_masp', $idProduct)
-                ->update(['ctgh_soluong' => $quantity]);
-            }
-            else {
-                DB::table('chitietgiohang')
-                ->insert([
-                'ctgh_magh' => $idCart,
-                'ctgh_masp' => $idProduct,
-                'ctgh_soluong' => $quantity
-                ]);
-            }
+        //     $alreadyProduct = ChiTietGioHang::where('ctgh_magh', $idCart)
+        //     ->where('ctgh_masp', $idProduct)
+        //     ->get('ctgh_soluong');
 
-            $data = ChiTietGioHang::where('ctgh_magh', $idCart)
-            ->where('ctgh_maSP', $idProduct)
-            ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
-            ->get();
+        //     if(sizeof($alreadyProduct) > 0) {
+        //         DB::table('chitietgiohang')
+        //         ->where('ctgh_magh', $idCart)
+        //         ->where('ctgh_masp', $idProduct)
+        //         ->update(['ctgh_soluong' => $quantity]);
+        //     }
+        //     else {
+        //         DB::table('chitietgiohang')
+        //         ->insert([
+        //         'ctgh_magh' => $idCart,
+        //         'ctgh_masp' => $idProduct,
+        //         'ctgh_soluong' => $quantity
+        //         ]);
+        //     }
 
-        } 
-        else {
-            $items = json_decode($request->input('items'));
+        //     $data = ChiTietGioHang::where('ctgh_magh', $idCart)
+        //     ->where('ctgh_maSP', $idProduct)
+        //     ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
+        //     ->get();
+
+        // } 
+        // else if($request->has('items')) {
+        //     $items = json_decode($request->input('items'));
             
-            $data = ChiTietGioHang::where('ctgh_magh', $idCart)
-            ->whereIn('ctgh_maSP', $items)
-            ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
-            ->get();
+        //     $data = ChiTietGioHang::where('ctgh_magh', $idCart)
+        //     ->whereIn('ctgh_maSP', $items)
+        //     ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
+        //     ->get();
 
-        }
+        // }
 
         
         //dd($data, $total);
 
 
-        return view('client.pages.checkout', compact('data', 'total')); 
+        return view('client.pages.checkout'); 
+    }
+
+    public function getItemBuy($id) {
+
+        $idUser = Auth::user()->id;
+
+        $idCart = GioHang::where('gh_mand', $idUser)->get('gh_ma')[0]->gh_ma;
+
+        // dd($idCart);
+
+
+        $data = ChiTietGioHang::where('ctgh_magh', $idCart)
+        ->join('sanpham', 'chitietgiohang.ctgh_masp', '=', 'sanpham.sp_ma')
+        ->where('sanpham.sp_ma', (int)$id)
+        ->get()[0];
+
+
+
+        
+
+
+
+        return response()->json(['id' => $id, 'idUser' => $idUser, 'idCart' => $idCart, 'data' => $data]);
+    }
+
+    public function getItem($id) {
+
+        $data = SanPham::where('sp_ma', $id)->get()[0];
+
+        return response()->json(['data' =>$data]);
     }
 }

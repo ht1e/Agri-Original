@@ -44,7 +44,7 @@
                             <form action="{{route('acceptedOrder')}}" method="POST">
                                 @csrf
                                 <input type="hidden" name="idOrder" value="{{$item->DH_Ma}}">
-                                <input type="hidden" name="typeOrder" value="2">
+                                <input type="hidden" name="typeOrder" value="4">
                                 <button class="px-2 py-1 text-xs border-2 rounded-xl bg-green-300">Hoàn thành</button>
                             </form>
                         @endif

@@ -46,11 +46,11 @@
         </div>
         <div class="nav row-span-1">
             <ul class="float-left w-full">
-                <li class="inline mx-8"><a href="{{route('home')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Trang Chủ</a></li>
-                <li class="inline mx-8"><a href="{{route('mainProduct')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Sản Phẩm</a></li>
+                <li class="inline mx-8"><a href="{{route('home')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125 hover:border-b-2 hover:border-primary-color">Trang Chủ</a></li>
+                <li class="inline mx-8"><a href="{{route('mainProduct')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125 hover:border-b-2 hover:border-primary-color">Sản Phẩm</a></li>
                 {{-- <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Giới Thiệu</a></li> --}}
-                <li class="inline mx-8"><a href="{{route('getContact')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Liên Hệ</a></li>
-                <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125">Tin Tức</a></li>
+                <li class="inline mx-8"><a href="{{route('getContact')}}" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125 hover:border-b-2 hover:border-primary-color">Liên Hệ</a></li>
+                <li class="inline mx-8"><a href="" class="px-2 py-1 font-semibold text-slate-500 hover:text-slate-900 hover:scale-125 hover:border-b-2 hover:border-primary-color">Tin Tức</a></li>
             </ul>
         </div>
     </div>

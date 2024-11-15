@@ -17,7 +17,7 @@ $items = [1,2,3,4,5];
             <div class="col-span-1"></div>
         </div>
         @foreach ($data as $item)
-        <div class="grid grid-cols-7 leading-10 py-2 text-center">
+        <div class="grid grid-cols-7 leading-10 py-2 text-center border-b-2">
             <div class="col-span-2"><span>{{$item->HDN_Ma}}</span></div>
             <div class="col-span-2"><span>{{date('d/m/Y', strtotime($item->HDN_ThoiGian))}}</span></div>
             <div class="col-span-2"><span>{{$item->NCC_Ten}}</span></div>

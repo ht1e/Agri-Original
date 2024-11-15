@@ -8,6 +8,7 @@ use App\Http\Controllers\Client\CartController;
 use App\Http\Controllers\Client\CheckoutController;
 use App\Http\Controllers\Client\HomeController;
 use App\Http\Controllers\Client\ProfileController;
+use App\Http\Controllers\Client\RecomendController;
 use App\Http\Controllers\Auth\AuthController;
 ///Admin Controller
 use App\Http\Controllers\Admin\AdminController;
@@ -17,6 +18,9 @@ use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ChartController;
 use App\Http\Controllers\Admin\ImportController;
+
+//payment controller
+use App\Http\Controllers\Payment\PaymentController;
 
 //BotMan Controller
 
@@ -31,6 +35,27 @@ use App\Http\Controllers\BotMan\BotManController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+//paymend
+
+Route::post('/vnpay_payment', [PaymentController::class, 'vnpay_payment'])->name('vnpay');
+
+Route::get('/rs_vnpay_payment', [PaymentController::class, 'rs_vnpay_payment'])->name('rs_vnpay');
+
+//end payment
+
+
+//Recomend
+
+Route::get('/recomend/ProductsOfUser', [RecomendController::class, 'getdataRecomend']);
+
+//get list newproducts
+Route::get('/newproducts', [ProductController::class, 'getNewProducts']);
+
+//get list mostproducts
+Route::get('/mostproducts', [ProductController::class, 'getMostProducts']);
+
+//End Recomend
+
 
 //Bot Man 
 
@@ -74,6 +99,10 @@ Route::post('/add-to-cart', [CartController::class, 'addToCart'])->name('addToCa
 //get Checkout
 Route::post('/checkout', [CheckoutController::class, 'postCheckout'])->name('postCheckout');
 Route::get('/checkout', [CheckoutController::class, 'getCheckout'])->name('getCheckout');
+
+//checkout api
+Route::get('/getItemBuy/{id}', [CheckoutController::class, 'getItemBuy']);
+Route::get('/getItem/{id}', [CheckoutController::class, 'getItem']);
 
 //profile
 Route::get('/profile', [ClientController::class, 'getProfile'])->name('getProfile');
@@ -124,6 +153,8 @@ Route::prefix('/admin')->middleware('authmiddleware')->group(function() {
     Route::get('/import/add', [ImportController::class, 'getAddImport'])->name('getAddImport');
     Route::post('/import/add', [ImportController::class, 'handleAddImport'])->name('handleAddImport');
     Route::get('/import/{id}', [ImportController::class, 'getDetailsImport'])->name('getDetailsImport');
+
+    Route::post('/import/addvendor', [ImportController::class, 'addVendor']);
 });
 
 

@@ -5,7 +5,8 @@
         alt="">
         <div class="p-2">
             <h1 class="h-[65px]">{{$item->SP_Ten}}</h1>
-            <p class="text-xs h-[60px] overflow-hidden lowercase mt-2">{{$item->SP_MoTa}}</p>
+            <p class="text-xs h-[30px] overflow-hidden text-ellipsis whitespace-nowrap lowercase mt-2">{{$item->SP_MoTa}}</p>
+            <p class="h-[20px]">Tồn kho: {{$totalAvaiable[$item->SP_Ma -1]->tonkho}}</p>
             <h3 class="mt-2">{{number_format($item->SP_Gia, 0, '', '.')}}đ</h3>
 
         </div>

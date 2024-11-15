@@ -73,4 +73,17 @@ class ImportController extends Controller
 
         return view('Admin.page.ImportBill.detailsImport', compact('data', 'importBill'));
     }
+
+    public function addVendor(Request $request) {
+
+        $nameVendor = $request->input('nameVendor');
+
+        Nhacungcap::insert([
+            'ncc_ten' => $nameVendor
+        ]);
+
+
+
+        return response()->json(['status' => 'success']);
+    }
 }

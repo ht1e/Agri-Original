@@ -51,6 +51,8 @@ const canculatorTotal = () => {
         }
     })
     ipTotal.value = total
+
+    localStorage.setItem('totalBuy', JSON.stringify(total))
     total = formatNumber(total)
     totalPrice.innerHTML =`Tổng cộng: ${total}`
 }
@@ -154,8 +156,15 @@ const handleCheckout = (e) => {
 
     const items = getListChecked()
     if(items.length > 0) { 
-        const ipItems = $('#ipItems')
+        const ipItems = $('#ipItems') 
         ipItems.value = JSON.stringify(items)
+
+
+        localStorage.setItem('listItemChecked', JSON.stringify(items))
+
+
+        if(localStorage.getItem('BuyNow'))
+            localStorage.removeItem('BuyNow')
 
         return true
         // console.log(ipItems, JSON.stringify(items))

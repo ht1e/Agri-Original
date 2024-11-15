@@ -161,3 +161,59 @@ const handlePostImport = () => {
 }
 
 btnAddImport.addEventListener('click', handlePostImport)
+
+
+/// add vendor
+
+const listVendor = $('#listVendor')
+const btnShowAddVendor = $('#btnShowAddVendor')
+const boxAddVendor = $('#boxAddVendor')
+const btnAddVendor = $('#btnAddVendor')
+const cancelAddVendor = $('#cancelAddVendor')
+
+
+btnAddVendor.addEventListener('click', () => {
+
+    const nameVendor = $('#nameVendor').value
+    
+    if(nameVendor) {
+        console.log(nameVendor)
+
+        axios.post('/admin/import/addvendor', {nameVendor})
+        .then(response => {
+            if(response.data.status == 'success') {
+                Swal.fire({
+                    position: "center",
+                    icon: "success",
+                    title: 'Đã thêm mới nhà cung cấp',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+                  .then(() => {
+                    window.location.reload()
+                  });
+            }
+        })
+        .catch(error => console.log(error))
+    }
+
+
+})
+
+
+
+btnShowAddVendor.addEventListener('click', (e) => {
+
+    listVendor.classList.add('hidden')
+    btnShowAddVendor.classList.add('hidden')
+
+    boxAddVendor.classList.remove('hidden')
+})
+
+cancelAddVendor.addEventListener('click', () => {
+
+    listVendor.classList.remove('hidden')
+    btnShowAddVendor.classList.remove('hidden')
+
+    boxAddVendor.classList.add('hidden')
+})

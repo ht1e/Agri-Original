@@ -97,5 +97,28 @@ class ProductController extends Controller
 
             return view('client.pages.mainProduct', compact('data', 'categories', 'inputPrice', 'pricemost'));
         }
-    } 
+    }
+    
+    public function getNewProducts() {
+
+        $newProducts = SanPham::orderBy('sp_ma', 'desc')->take(4)->get('sp_ma');
+
+        return response()->json(['newProducts' => $newProducts]);
+    }
+
+    public function getMostProducts() {
+
+        $totalSold = SanPham::join('chitietdonhang', 'sanpham.sp_ma', '=', 'chitietdonhang.ctdh_masp')
+        ->selectRaw('sanpham.sp_ma , sum(chitietdonhang.ctdh_soluong) as soluongban')->groupBy('sanpham.sp_ma')->orderBy('soluongban', 'desc')->take(4)->get();
+
+        $idProducts = [];
+
+        foreach($totalSold as $total) {
+            array_push($idProducts, $total->sp_ma);
+        }
+
+        $mostProducts = SanPham::whereIn('sp_ma', $idProducts)->get('sp_ma');
+
+        return response()->json(['mostProducts' => $mostProducts]);
+    }
 }

@@ -29,6 +29,17 @@
             @endforeach
         </div>
     </div>
+    {{-- @if (Auth::check()) --}}
+    <div class="pl-2 py-4  hidden" id="containerRecomend" >
+        <h1 class="font-semibold py-2">Có thể bạn thích</h1>
+        <div class=" grid grid-cols-4 gap-2" id="recomendProduct" @if(Auth::check()) data-key="{{Auth::user()->id}}" @endif >
+            {{-- @foreach($mostProducts as $key => $product)
+            @include('client.components.cardProduct', ['item' => $product])
+            @endforeach --}}
+        </div>
+    </div>
+    {{-- @endif --}}
+    
 </div>
 
 @endsection

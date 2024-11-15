@@ -15,7 +15,22 @@ class ProductsController extends Controller
     public function index() {
         $items = SanPham::paginate(10);
 
-        return view('Admin.page.Product.mainProduct', compact('items'));
+        $SQLTotalAvaiable = "select sanpham.SP_Ma, 
+        sum(chitiethoadonnhap.CTHDN_Soluong), 
+        SUM(IFNULL(chitietdonhang.CTDH_SoLuong, 0)), 
+        IFNULL(sum(chitiethoadonnhap.CTHDN_Soluong) - IFNULL(sum(chitietdonhang.CTDH_SoLuong), 0), 0) as tonkho
+        from chitiethoadonnhap, sanpham
+        LEFT JOIN chitietdonhang
+        on chitietdonhang.CTDH_MaSP = sanpham.SP_Ma 
+        where chitiethoadonnhap.CTHDN_MaSP = sanpham.SP_Ma
+        GROUP by sanpham.SP_Ma
+        ORDER BY sanpham.SP_Ma";
+
+        $totalAvaiable = DB::select($SQLTotalAvaiable);
+
+        // dd($totalAvaiable);
+
+        return view('Admin.page.Product.mainProduct', compact('items', 'totalAvaiable'));
     }
 
     public function addProduct() {
@@ -122,5 +137,7 @@ class ProductsController extends Controller
 
         return redirect('/admin/product');
     }
+
+
 
 }

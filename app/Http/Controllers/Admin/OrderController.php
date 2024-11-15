@@ -30,6 +30,7 @@ class OrderController extends Controller
         $items = DonHang::where('dh_mattdh', 1)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
+        ->orderBy('donhang.dh_ma', 'desc')
         ->get();
 
         return view('Admin.page.Order.mainOrder', compact('items', 'title'));
@@ -42,6 +43,7 @@ class OrderController extends Controller
         $items = DonHang::where('dh_mattdh', 4)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
+        ->orderBy('donhang.dh_ma', 'desc')
         ->get();
 
         return view('Admin.page.Order.mainOrder', compact('items', 'title'));
@@ -53,6 +55,7 @@ class OrderController extends Controller
         $items = DonHang::where('dh_mattdh', 3)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
+        ->orderBy('donhang.dh_ma', 'desc')
         ->get();
 
         return view('Admin.page.Order.mainOrder', compact('items', 'title'));
@@ -64,6 +67,7 @@ class OrderController extends Controller
         $items = DonHang::where('dh_mattdh', 2)
         ->join('trangthaidonhang', 'donhang.dh_mattdh', '=', 'trangthaidonhang.ttdh_ma')
         ->select('donhang.*', 'trangthaidonhang.*')
+        ->orderBy('donhang.dh_ma', 'desc')
         ->get();
 
         return view('Admin.page.Order.mainOrder', compact('items', 'title'));

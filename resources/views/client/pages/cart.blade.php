@@ -1,7 +1,7 @@
 @extends('client.layout.main')
 
 @section('content')
-    <div class="w-full h-full p-2 relative">
+    <div class="w-full h-full p-2 relative border rounded-md">
         <h1 class="px-2 py-1 text-3xl">Giỏ Hàng</h1>
 
         <div class="w-full mt-5">
@@ -18,7 +18,7 @@
                 <div class="rowItem h-[70px] border-t border-t-[#009b49] mb-2">
                     <div class="container grid grid-cols-11 h-full">
                         <div class="col-span-2 flex justify-center items-center text-[14px]"><input type="checkbox" class="checkCart" data-key="{{$item->SP_Ma}}"></div>
-                        <div class="col-span-2 flex items-center text-[14px]"><img class="h-[20px] w-[30px]" src="https://www.hoptri.com/media/k2/items/cache/23da450944f0818162562a06dc761501_XL.jpg" alt=""><span class="ml-4">{{$item->SP_Ten}}</span></div>
+                        <div class="col-span-2 flex items-center text-[14px]"><img class="h-[20px] w-[30px]" src="{{$item->SP_HinhAnh}}" alt=""><span class="ml-4">{{$item->SP_Ten}}</span></div>
                         <div class="col-span-2 flex justify-center items-center text-[14px]">
                             <input type="number" class="ipQuantity w-[50px] text-center outline-none focus:border-[#009b49] border rounded-md" value="{{$item->CTGH_SoLuong}}" name="quantity" data-key="{{$item->CTGH_MaSP}}"  data-price="{{$item->SP_Gia}}">
                         </div>
@@ -36,10 +36,21 @@
                     <input type="hidden" name="items" id="ipItems">
                     <input type="hidden" name="total" id="ipTotal">
                 </div>
-                <span id="totalPrice" class="block py-2 px-4 text-[18px]">Tổng: 0₫</span>
-                <button class="px-4 py-1 bg-primary-color text-white" id="btnBuyNow">Mua Ngay</button>
+                <span id="totalPrice" class="block py-2 px-4 text-[18px] text-red-400">Tổng: 0₫</span>
+                <div class=" flex justify-end">
+                    <button class="px-8 py-4  rounded-md bg-primary-color text-white" id="btnBuyNow">Mua Ngay</button>
+                </div>
+                
             </form>
             
+        </div>
+    </div>
+    <div class="pl-2 py-4 hidden"  id="containerRecomend">
+        <h1 class="font-semibold py-2">Có thể bạn thích</h1>
+        <div class=" grid grid-cols-4 gap-2" id="recomendProduct" @if(Auth::check()) data-key="{{Auth::user()->id}}" @endif>
+                {{-- @foreach($mostProducts as $key => $product)
+                @include('client.components.cardProduct', ['item' => $product])
+                @endforeach --}}
         </div>
     </div>
 @endsection

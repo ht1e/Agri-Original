@@ -4,15 +4,15 @@
     <div class="w-full h-full mt-5 px-2 grid grid-cols-6 grid-rows-3">
         <div class="top col-span-6 grid grid-cols-3 row-span-1 gap-16">
             <div class="col-span-1 text-center border-2 h-[90%]">
-                <h1 class="text-2xl uppercase">SOLD</h1>
+                <h1 class="text-2xl uppercase my-2">Tổng thu nhập</h1>
                 <h2 class="py-4 text-xl">{{number_format($totalSold, 0, '', '.')}}đ</h2>
             </div>
             <div class="col-span-1 text-center border-2 h-[90%]">
-                <h1 class="text-2xl uppercase">TOTAL USER</h1>
+                <h1 class="text-2xl uppercase my-2">Tổng số người dùng</h1>
                 <h2 class="py-4 text-xl">{{number_format($totalUser, 0, '', '.')}}</h2>
             </div>
             <div class="col-span-1 text-center border-2 h-[90%]">
-                <h1 class="text-2xl uppercase">total order</h1>
+                <h1 class="text-2xl uppercase my-2">Tổng số đơn hàng</h1>
                 <h2 class="py-4 text-xl">{{number_format($totalOrder, 0, '', '.')}}</h2>
             </div>
         </div>

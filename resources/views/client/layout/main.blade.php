@@ -11,6 +11,18 @@
     @yield('title')
     @vite('./resources/css/app.css')
 </head>
+
+{{-- @php
+    
+$api = 'http://127.0.0.1:5557/apiRecomend?id=1';
+$id = 1;
+$data = file_get_contents($api);
+$response_data = json_decode($data);
+// dd($response_data);
+$user_data = $response_data->data;
+dd($user_data);
+
+@endphp --}}
 <body class="font-poppins relative">
 
     @yield('alertDialog')
@@ -29,7 +41,7 @@
     </footer>
 
     @yield('scripts')
-    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    {{-- <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
     <script>
         var botmanWidget = {
             title: 'NewTech VietNam',
@@ -38,7 +50,17 @@
             desktopWidth: 300,
             desktopHeight: 370
         };
-    </script>
+    </script> --}}
+
+    {{-- <div id="rasa-chat-widget" data-websocket-url="https://your-rasa-url-here/"></div>
+    <script src="https://unpkg.com/@rasahq/rasa-chat" type="application/javascript"></script> --}}
+
+    {{-- @include('client.components.chatbot') --}}
+
+   
     
+    {{-- @vite('./resources/js/client/test.js') --}}
+
+    @vite('./resources/js/client/recomend.js')
 </body>
 </html>

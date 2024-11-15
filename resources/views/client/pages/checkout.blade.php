@@ -18,7 +18,7 @@
 @section('content')
     <div class="py-5" id="checkoutContainer">
         <div class="title flex justify-between text-primary-color"><h1 class="px-2 py-4 text-xl font-bold ">Thanh Toán</h1><a class="px-2 py-4 text-xl font-bold" href="{{route('getCart')}}">Giỏ Hàng<i class="fa-solid fa-arrow-right ml-1"></i></a></div>
-        <div class="infor border-b py-2">
+        <div class="infor border-2 rounded-md py-2 px-4 my-4">
             <h2 class="px-1 py-2 text-[18px] font-semibold">Thông tin người nhận</h2>
             <div class="flex justify-between px-5">
                 <label for="">Địa chỉ: 
@@ -37,7 +37,7 @@
                 </label>
             </div>
         </div>
-        <div class="content mt-4 border-b py-2">
+        <div class="content mt-4 border-2 px-4 py-2 rounded-md my-4">
             <div class=""><h2 class="px-1 py-2 text-[18px] font-semibold">Thông tin sản phẩm</h2></div>
             <div class="titleTable grid grid-cols-5 px-5 py-2">
                 <div class="col-span-2 text-center font-semibold"><span>Tên Sản Phẩm</span></div>
@@ -45,19 +45,21 @@
                 <div class="col-span-1 text-center font-semibold"><span>Đơn Giá</span></div>
                 <div class="col-span-1 text-center font-semibold"><span>Tổng</span></div>
             </div>
-            <div class="contentTable mt-2">
-                @foreach($data as $key => $item)
+            <div class="contentTable mt-2" id="contentTable">
+                {{-- @foreach($data as $key => $item)
                 <div class="itemRow grid grid-cols-5 px-5 py-2" data-key="{{$item->SP_Ma}}" data-quantity="{{$item->CTGH_SoLuong}}">
                     <div class="col-span-2 text-center flex items-center"><img class="h-[20px] w-[30px]" src="{{$item->SP_HinhAnh}}" alt=""><span class="ml-4">{{$item->SP_Ten}}</span></div>
                     <div class="col-span-1 text-center"><span>{{$item->CTGH_SoLuong}}</span></div>
                     <div class="col-span-1 text-center"><span>{{number_format($item->SP_Gia, 0, '', '.')}}đ</span></div>
                     <div class="col-span-1 text-center"><span>{{number_format($item->SP_Gia*$item->CTGH_SoLuong, 0, '', '.')}}đ</span></div>
                 </div>
-                @endforeach
+                @endforeach --}}
             </div>
-            <div class="totalTable flex justify-end font-semibold">Tạm tính: <span class="pl-2">{{number_format($total, 0, '', ',')}}đ</span></div>
+            <div class="totalTable flex justify-end font-semibold" id="totalTable">
+                {{-- Tạm tính: <span class="pl-2">{{number_format($total, 0, '', ',')}}đ</span> --}}
+            </div>
         </div>
-        <div class="delivery border-b py-2">
+        <div class="delivery border-2 px-4 py-2 rounded-md my-4">
             <div class=""><h2 class="px-1 py-2 text-[18px] font-semibold">Thông tin vận chuyển</h2></div>
             <div class="grid grid-cols-5">
                 <div class="col-span-2 text-center font-semibold"><span>Đơn vị giao hàng</span></div>
@@ -70,17 +72,40 @@
                 <div class="col-span-1 text-center"><span>{{number_format(30000, 0, '', '.')}}đ</span></div>
             </div>
         </div>
-        <div class="total flex justify-end font-semibold">Tổng cộng:<span class="ml-2" id="totalPrice" data-price="{{$total}}">{{number_format($total+30000, 0, '', '.')}}</span>đ</div>
-        <div class="payment">
+        <div class="px-4 py-4 my-2 payment border-2 rounded-md">
             <div class=""><h2 class="px-1 py-2 text-[18px] font-semibold">Phương thức thanh toán</h2></div>
-            <div class="option">
-                <div class=""><span class="px-4 py-2 border border-primary-color">Thanh toán khi nhận hàng</span></div>
+            <div class="option flex gap-8">
+                <div class=""><button class="px-4 py-2 border border-primary-color cursor-pointer payment-option" >Thanh toán khi nhận hàng</button></div>
+                <div class=""><button class="px-4 py-2 border border-primary-color cursor-pointer payment-option" id="vnpay">Thanh toán VNPAY</button></div>
+            </div>
+        </div>
+        <div class="">
+            <div class="total flex justify-end font-semibold text-[24px] text-red-400" id="totalCheckout">
+                {{-- Tổng cộng:<span class="ml-2" id="totalPrice" data-price="{{$total}}">{{number_format($total+3000, 0, '', '.')}}</span>đ --}}
+            </div>
+            <div class="flex justify-end">
+                {{-- <form action="{{route('vnpay')}}" method="POST" id="formpayment">
+                    @csrf
+                    <div id="boxPayment">
+                    </div>
+                    
+                </form> --}}
+
+                <form action="{{route('vnpay')}}" method="POST" id="formpayment">
+                    @csrf
+                    <div id="boxPayment">
+                    </div>
+                    {{-- <button type="submit" name="redirect" class="px-4 py-2 border border-primary-color hidden" id="btnFormVNPAY">Thanh toán VNPay test</button> --}}
+                    <button type="submit" name="redirect" class="px-8 py-4 rounded-md border border-primary-color hover:bg-primary-color hover:text-white" id="btnCheckout">Đặt hàng</button>
+
+                </form>
+
+                {{-- <button class="px-8 py-4 rounded-md border border-primary-color hover:bg-primary-color hover:text-white" id="btnCheckout">Đặt hàng</button> --}}
+            
+                
             </div>
         </div>
        
-        <div class="flex justify-end">
-            <button class="px-4 py-2 border border-primary-color hover:bg-primary-color hover:text-white" id="btnCheckout">Đặt hàng</button>
-        </div>
     </div>
 
 @endsection
