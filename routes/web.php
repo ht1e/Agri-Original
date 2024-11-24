@@ -54,6 +54,8 @@ Route::get('/newproducts', [ProductController::class, 'getNewProducts']);
 //get list mostproducts
 Route::get('/mostproducts', [ProductController::class, 'getMostProducts']);
 
+Route::get('/recomenddashboard', [RecomendController::class, 'recomendDashBoard']);
+
 //End Recomend
 
 

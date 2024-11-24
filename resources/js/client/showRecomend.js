@@ -1,16 +1,17 @@
-import axios from 'axios';
+import axios from "axios"
+
 const csrfToken = document.head.querySelector('meta[name="csrf-token"]').content;
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken;
 
 const $ = document.querySelector.bind(document);
 const $$ = document.querySelectorAll.bind(document);
 
-const recomendBox = $('#recomendProduct')
-const containerRecomend = $('#containerRecomend')
+const box_same = $('#box-same')
+const box_selected = $('#box-selected')
 
-// console.log(containerRecomend.classList.contains('hidden'));
 
-function recomend() {
+
+function recomend(title) {
     axios.get('/recomend/ProductsOfUser')
         .then(res => {
             // console.log(res);
@@ -54,17 +55,40 @@ function recomend() {
             const apiRcm = "http://127.0.0.1:5557/apiRecomend?id="
             const promises = []
 
+            let htmlsame =``
+
             listProducts.forEach(product => {
 
                 promises.push(
                     axios.get(apiRcm + product)
                         .then(response => {
-                            console.log(response)
+                            // console.log(response)
                             const responseRcm = response.data.data
 
                             //push to arr
                             responseRcm.forEach(pd => listRecomend.push(pd))
-                            console.log(listRecomend)
+                            // console.log(listRecomend)
+
+                            let html = `
+                            <div class="row-same">
+                                <h1>Sản Phẩm: ${product} - </h1>
+                            
+                            `
+
+                            const htmlbase = responseRcm.map(z => {
+                                return `
+                                    <div class="grid grid-cols-3 text-center sameOfProduct">
+        
+                                        <div class="col-span-1 px-2 py-4">${z.SP_Ma}</div>
+                                    
+                                        <div class="col-span-1 px-2 py-4">${z.SP_Ten}</div>
+                                    
+                                        <div class="col-span-1 px-2 py-4">${z.rate}</div>
+                                    </div>
+                                `
+                            }).join(" ")
+
+                            htmlsame += html + htmlbase + `</div>`
                         })
                         .catch(err => console.log(err))
                 )
@@ -73,7 +97,7 @@ function recomend() {
             const newProducts = []
             const mostProducts = []
 
-            if (document.title == "Trang chủ") {
+            if (title == "Trang chủ") {
 
                 const apiNewProducts = 'http://127.0.0.1:8000/newproducts'
                 const apiMostProducts = 'http://127.0.0.1:8000/mostproducts'
@@ -96,19 +120,19 @@ function recomend() {
                         .catch(err => console.log(err))
                 )
             }
-            
+
             //trang chi tiet san pham
-            let currentProduct = undefined
-            if(document.title == "Chi tiết sản phẩm") {
-                currentProduct =  $('#idProduct').getAttribute('value')
-            }
+            // let currentProduct = undefined
+            // if(document.title == "Chi tiết sản phẩm") {
+            //     currentProduct =  $('#idProduct').getAttribute('value')
+            // }
 
             //trang gio hang
 
-            let cart = undefined
-            if(document.title == "Giỏ hàng") {
-                cart = listProductCart.map(x => x.ctgh_masp)
-            }
+            // let cart = undefined
+            // if(document.title == "Giỏ hàng") {
+            //     cart = listProductCart.map(x => x.ctgh_masp)
+            // }
             // console.log(cart)
 
             const listProductsHandled = []
@@ -128,7 +152,19 @@ function recomend() {
                 })
 
                 listRecomend.reverse()
-                // console.log(listRecomend[listRecomend.length-1], listRecomend[listRecomend.length-2], listRecomend[listRecomend.length-3], listRecomend[listRecomend.length-4])
+                console.log(listRecomend[listRecomend.length-1], listRecomend[listRecomend.length-2], listRecomend[listRecomend.length-3], listRecomend[listRecomend.length-4])
+
+
+                //lay list rate sorted
+
+                const listRate = []
+
+                listRecomend.forEach(item => {
+                    listRate.push(item.rate)
+                })
+
+                console.log(listRate)
+                
 
                 //loai bo property rate
                 listRecomend = listRecomend.map(l => {
@@ -163,20 +199,26 @@ function recomend() {
                     //     }
                     // }
 
-                    listRecomend.forEach(item => {
+                    const listIndex = []
+
+                    listRecomend.forEach((item, index) => {
                         if (JSON.stringify(item) === JSON.stringify(listProductsHandled[0])
                             || JSON.stringify(item) === JSON.stringify(listProductsHandled[1])
                             || JSON.stringify(item) === JSON.stringify(listProductsHandled[2])
                             || JSON.stringify(item) === JSON.stringify(listProductsHandled[3])
                             || newProducts.includes(item.SP_Ma)
                             || mostProducts.includes(item.SP_Ma)
-                            || (currentProduct && item.SP_Ma == currentProduct)
-                            || (cart && cart.includes(item.SP_Ma))
+                            // || (currentProduct && item.SP_Ma == currentProduct)
+                            // || (cart && cart.includes(item.SP_Ma))
                         )
-                            console.log(false)
+                            console.log(true)
                         else {
-                            if(listProductsHandled.length < 4)
+                            if (listProductsHandled.length < 4) {
                                 listProductsHandled.push(item)
+                                listIndex.push(index)
+                                console.log(index)
+                                
+                            }
                         }
                     })
 
@@ -185,34 +227,29 @@ function recomend() {
 
                     const html = listProductsHandled.map((pds, index) => {
                         return `
-                            <div class="cardProduct w-full  bg-slate-200 rounded-md border text-center p-2">
-                                    <div class="h-[200px]">
-                                        <a class="viewdetail" href="/products/productDetails/${pds.SP_Ma}" data-key="${pds.SP_Ma}">
-                                            <img class="h-full w-full  rounded-t-md" src="${pds.SP_HinhAnh}" alt="">
-                                        </a>
-                                    </div>
-                                    <div class="infor py-2 px-2">
-                                        <h1 class="h-[50px]  overflow-hidden">${pds.SP_Ten}</h1>
-                                        <p class="text-xs h-[50px] lowercase overflow-hidden">${pds.SP_MoTa}</p>
-                                        <h2 class="">${pds.SP_Gia.toLocaleString('vi-VN')}₫</h2>
-                                    </div>
-                                    <div class="">
-                                            <a href="/products/productDetails/${pds.SP_Ma}" class="viewdetail text-[12px] px-2 py-1 border bg-primary-color rounded-[10%] hover:scale-105 hover:rotate-3 text-white" datakey="${pds.SP_Ma}">Xem chi tiết</a>
-                                    </div>  
+                            <div class="row-same">
+                                <div class="grid grid-cols-3 text-center sameOfProduct">
+                            
+                                    <div class="col-span-1 px-2 py-4">${pds.SP_Ma}</div>
+                                
+                                    <div class="col-span-1 px-2 py-4">${pds.SP_Ten}</div>
+                                
+                                    <div class="col-span-1 px-2 py-4">${listRate[listIndex[index]]}</div>
+                                </div>
+                            
                             </div>
                             `
                     }).join(" ")
 
-                    recomendBox.innerHTML = html
+                    box_same.innerHTML = htmlsame
+                    
+
+                    box_selected.innerHTML = html
+
 
                     //them su kien click cho cac the san pham
 
-                    recomendUserClick()
-
                     //hien thi recomend
-
-                    if (listProductsHandled.length > 0)
-                        containerRecomend.classList.remove('hidden')
 
                 }
             })
@@ -220,47 +257,4 @@ function recomend() {
         .catch(err => console.log(err))
 }
 
-if (recomendBox)
-    recomend()
-
-// recomend on click event to products
-
-function recomendUserClick() {
-    const listcard = $$(".viewdetail")
-    // console.log(listcard)
-    listcard.forEach(i => {
-        i.addEventListener("click", handleclickProduct)
-    })
-}
-
-
-//xu ly su kien click the san pham
-
-const productsClicked = []
-
-
-function handleclickProduct(e) {
-    // console.log(productsClicked)
-    const listClicked = JSON.parse(localStorage.getItem("productsClicked"))
-
-    if (listClicked) {
-        listClicked.forEach(x => {
-            if (!productsClicked.includes(x))
-                productsClicked.push(x)
-        })
-    }
-
-    const id = parseInt(e.target.getAttribute(('datakey')))
-    productsClicked.push(id)
-    // console.log(JSON.stringify(productsClicked))
-    localStorage.setItem('productsClicked', JSON.stringify(productsClicked))
-    recomend()
-
-}
-
-if (containerRecomend && containerRecomend.classList.contains('hidden'))
-    recomendUserClick()
-
-
-
-
+recomend()

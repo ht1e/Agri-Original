@@ -19,15 +19,15 @@ class BotManController extends Controller
 
         $botman->hears('{message}', function ($botman, $message) {
 
-            $this->rep($botman);
+            // $this->rep($botman);
 
 
-            // if($message == 'bắt đầu') {
-            //     $this->askName($botman);
-            // }
-            // else {
+            if($message == 'bắt đầu') {
+                $this->askName($botman);
+            }
+            else {
 
-            // }
+            }
         });
 
 
@@ -35,35 +35,35 @@ class BotManController extends Controller
 
     }
 
-    public function getdata() {
-        $api = 'http://127.0.0.1:5557/apiRecomend?id=1';
-        $id = 1;
-        $data = file_get_contents($api);
-        $response_data = json_decode($data);
-        // dd($response_data);
-        $user_data = $response_data->data;
-        // dd($user_data);
+    // public function getdata() {
+    //     $api = 'http://127.0.0.1:5557/apiRecomend?id=1';
+    //     $id = 1;
+    //     $data = file_get_contents($api);
+    //     $response_data = json_decode($data);
+    //     // dd($response_data);
+    //     $user_data = $response_data->data;
+    //     // dd($user_data);
 
-        return $user_data;
-    }
+    //     return $user_data;
+    // }
 
-    public function rep($botman) {
+    // public function rep($botman) {
 
-        $that = $this;
+    //     $that = $this;
 
-        $botman->ask("Xin chào ! Tên bạn là gì?", function (Answer $answer) {
-            $name = $answer->getText();
+    //     $botman->ask("Xin chào ! Tên bạn là gì?", function (Answer $answer) {
+    //         $name = $answer->getText();
 
-            $this->say('Xin chào '.$answer);
+    //         $this->say('Xin chào '.$answer);
 
-            $data = $that->getdata();
-        }
-        );
+    //         $data = $that->getdata();
+    //     }
+    //     );
 
         
-        //$botman->say($data[1]);
+    //     //$botman->say($data[1]);
         
-    }
+    // }
 
     // public function replyIMG($botman) {
 

@@ -54,6 +54,8 @@ class ProductController extends Controller
 
     public function getSearch(Request $request) {
         $keysearch = $request->input('textSearch');
+
+
         $data = SanPham::where('sp_ten', 'LIKE', '%'.$keysearch.'%')->paginate(8);
         $categories = DanhMuc::all();
 
@@ -68,6 +70,8 @@ class ProductController extends Controller
     public function filterProduct(Request $request) {
         $categories = DanhMuc::all();
         $pricemost = SanPham::max('sp_gia');
+
+        //neu co input search  thi filter theo search
 
         if($request->has('sort')) {
             $sort = $request->input('sort');

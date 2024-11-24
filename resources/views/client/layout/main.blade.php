@@ -41,7 +41,7 @@ dd($user_data);
     </footer>
 
     @yield('scripts')
-    {{-- <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
+    <script src='https://cdn.jsdelivr.net/npm/botman-web-widget@0/build/js/widget.js'></script>
     <script>
         var botmanWidget = {
             title: 'NewTech VietNam',
@@ -50,7 +50,7 @@ dd($user_data);
             desktopWidth: 300,
             desktopHeight: 370
         };
-    </script> --}}
+    </script>
 
     {{-- <div id="rasa-chat-widget" data-websocket-url="https://your-rasa-url-here/"></div>
     <script src="https://unpkg.com/@rasahq/rasa-chat" type="application/javascript"></script> --}}

@@ -31,4 +31,9 @@ class RecomendController extends Controller
         
         return response()->json(["status" => "Failed"]);
     }
+
+    public function recomendDashBoard() {
+        
+        return view('client.pages.recomenddashboard');
+    }
 }
